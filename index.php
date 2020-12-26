@@ -13,7 +13,7 @@
     <h1>Hacker News</h1>
   </header>
   <ul>
-    <li><a href="#Create new post">Create new post</a></li>
+    <li><a href="newpost.php">Create new post</a></li>
     <li><a href="#Most popular">Most popular</a></li>
     <li><a href="#Newest posts">Newest posts</a></li>
     <li><a href="login.php">Login</a></li>
