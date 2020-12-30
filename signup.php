@@ -19,7 +19,7 @@
             <label for="biography">Biography</label>
             <textarea id="biography" name="biography" placeholder="Write something.." style="height:200px"></textarea>
             <label for="avatar_name">Avatar name</label>
-            <input type="url" name="avatar_name" id="avatar_name" />
+            <input type="file" name="avatar_name" id="avatar_name" />
             <label for="password">Password</label>
             <input type="password" name="password" id="password" />
             <label for="password">Confirm password</label>

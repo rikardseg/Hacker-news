@@ -32,3 +32,17 @@ try {
 } catch (PDOException $e) {
     die($e->getMessage());
 }
+
+$sql = "INSERT INTO users (user, e_mail, biography, avatar_name, password_) VALUES (:user, :e_mail, :biography, :avatar_name, :password_)";
+$statement = $dbHandler->prepare($sql);
+
+$statement->bindParam(':user', $username);
+$statement->bindParam(':e_mail', $email);
+$statement->bindParam(':biography', $biography);
+$statement->bindParam(':avatar_name', $avatar);
+$statement->bindParam(':password_', $password);
+
+// insert one row
+$statement->execute();
+
+echo "YES";
