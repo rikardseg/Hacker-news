@@ -17,7 +17,7 @@ require __DIR__ . '/check_session.php' ?>
 <body>
     <main>
         <h1>Create new post</h1>
-        <form action="index.php" method="post">
+        <form action="handlepost.php" method="post">
             <label for="title">Title</label>
             <input type="text" name="title" id="title" />
             <label for="description">Description</label>

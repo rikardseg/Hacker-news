@@ -1,5 +1,9 @@
 <?php
 
+$redirect = header("Location: index.php");
+
+session_start();
+
 if (isset($_POST['title'], $_POST['description'], $_POST['link'])) {
     $title = $_POST['title'];
     $description = trim(filter_var($_POST['description'], FILTER_SANITIZE_SPECIAL_CHARS));
@@ -23,14 +27,21 @@ try {
     die($e->getMessage());
 }
 
+$id = rand();
+$user = $_SESSION['user'];
+$votes = 0;
+$time_stamp = date("Y-m-d H:i:s");
+
 $sql = "INSERT INTO posts (id, user, title, description, link, votes, time_stamp) VALUES (:id, :user, :title, :description, :link, :votes, :time_stamp)";
 $statement = $dbHandler->prepare($sql);
 
-$statement->bindParam(':user', $username);
-$statement->bindParam(':e_mail', $email);
-$statement->bindParam(':biography', $biography);
-$statement->bindParam(':avatar_name', $avatar);
-$statement->bindParam(':password_', $password);
+$statement->bindParam(':id', $id);
+$statement->bindParam(':user', $user);
+$statement->bindParam(':title', $title);
+$statement->bindParam(':description', $description);
+$statement->bindParam(':link', $link);
+$statement->bindParam(':votes', $votes);
+$statement->bindParam(':time_stamp', $time_stamp);
 
 // insert one row
 $statement->execute();
