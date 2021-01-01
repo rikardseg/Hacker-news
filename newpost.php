@@ -1,3 +1,9 @@
+<?php
+
+declare(strict_types=1);
+
+require __DIR__ . '/check_session.php' ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +11,7 @@
     <link rel="stylesheet" href="newpost.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>New post</title>
 </head>
 
 <body>

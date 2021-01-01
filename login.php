@@ -11,7 +11,7 @@
 <body>
   <main>
     <h1>Login</h1>
-    <form action="index.php" method="post">
+    <form action="create_session.php" method="post">
       <label for="username">Username</label>
       <input type="username" name="username" id="username" />
       <label for="password">Password</label>

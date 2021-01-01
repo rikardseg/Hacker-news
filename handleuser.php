@@ -28,8 +28,6 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     echo 'The email is not valid email address.';
 }
 
-print_r(PDO::getAvailableDrivers());
-
 try {
     $dbHandler = new PDO('sqlite:hackernews.db');
     echo "Yay!";
