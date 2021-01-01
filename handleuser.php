@@ -1,4 +1,8 @@
-<?php if (isset($_POST['username'], $_POST['email'], $_POST['password'], $_POST['biography'], $_POST['avatar_name'])) {
+<?php
+
+$redirect = header("Location: index.php");
+
+if (isset($_POST['username'], $_POST['email'], $_POST['password'], $_POST['biography'], $_POST['avatar_name'])) {
     $username = $_POST['username'];
     $email = $_POST['email'];
     $password = $_POST['password'];
@@ -46,3 +50,5 @@ $statement->bindParam(':password_', $password);
 $statement->execute();
 
 echo "YES";
+
+$redirect;
