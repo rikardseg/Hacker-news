@@ -1,5 +1,7 @@
 <?php
 
+require __DIR__ . '/alwaysload.php';
+
 $redirect = header("Location: index.php");
 
 if (isset($_POST['username'], $_POST['email'], $_POST['password'], $_POST['biography'], $_POST['avatar_name'])) {
@@ -28,12 +30,12 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     echo 'The email is not valid email address.';
 }
 
-try {
-    $dbHandler = new PDO('sqlite:hackernews.db');
-    echo "Yay!";
-} catch (PDOException $e) {
-    die($e->getMessage());
-}
+// try {
+//     $dbHandler = new PDO('sqlite:hackernews.db');
+//     echo "Yay!";
+// } catch (PDOException $e) {
+//     die($e->getMessage());
+// }
 
 $sql = "INSERT INTO users (user, e_mail, biography, avatar_name, password_) VALUES (:user, :e_mail, :biography, :avatar_name, :password_)";
 $statement = $dbHandler->prepare($sql);

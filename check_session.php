@@ -1,6 +1,6 @@
 <?php
-// Initiate session handling
-session_start();
+
+require __DIR__ . '/alwaysload.php';
 
 // Check if session variable is set and exist
 if (!isset($_SESSION['user'])) {

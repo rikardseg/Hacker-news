@@ -1,6 +1,28 @@
 <?php
 
-session_start();
+require __DIR__ . '/alwaysload.php';
+
+// sql statment that selects the number of rows in table posts
+$sql = "SELECT COUNT(*) FROM posts";
+$statement = $dbHandler->prepare($sql);
+$statement->execute();
+echo "antal rader: " . $statement->fetchColumn() . "<br />";
+
+// Fetch all records in table posts and store them in an array
+$sql = "SELECT * FROM posts";
+$statement = $dbHandler->query($sql);
+$posts = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+// foreach ($posts as $post) :
+//   echo $post['id'];
+//   echo $post['user'];
+//   echo $post['title'];
+//   echo $post['description'];
+//   echo $post['link'];
+//   echo $post['votes'];
+//   echo $post['time_stamp'];
+//   echo "<br />";
+// endforeach;
 
 ?>
 
@@ -32,6 +54,14 @@ session_start();
     <li><a href="logout.php">Logout</a></li>
     <li><a href="signup.php">Sign up</a></li>
   </ul>
+  <h1><?php foreach ($posts as $post) :
+        echo $post['user'];
+        echo $post['title'];
+        echo $post['description'];
+        echo $post['link'];
+        echo $post['votes'];
+        echo $post['time_stamp'];
+      endforeach; ?></h1>
   <script src="script.js"></script>
 </body>
 

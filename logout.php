@@ -1,6 +1,6 @@
 <?php
-// Initite session handling
-session_start();
+
+require __DIR__ . '/alwaysload.php';
 // Remove all info in the session variables
 session_unset();
 // End the current session
