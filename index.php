@@ -54,15 +54,15 @@ $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
     <li><a href="logout.php">Logout</a></li>
     <li><a href="signup.php">Sign up</a></li>
   </ul>
-  <h1><?php foreach ($posts as $post) :
-        echo $post['user'];
-        echo $post['title'];
-        echo $post['description'];
-        echo $post['link'];
-        echo $post['votes'];
-        echo $post['time_stamp'];
-      endforeach; ?></h1>
-  <script src="script.js"></script>
+  <?php foreach ($posts as $post) :
+  ?>
+    <h2><?php echo $post['title']; ?></h2>
+    <p><?php echo $post['votes']; ?> Posted by
+    <?php
+    echo $post['user'];
+    echo $post['time_stamp'];
+  endforeach; ?></p>
+    <script src="script.js"></script>
 </body>
 
 </html>
