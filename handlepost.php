@@ -1,8 +1,8 @@
 <?php
 
-$redirect = header("Location: index.php");
+require __DIR__ . '/alwaysload.php';
 
-session_start();
+$redirect = header("Location: index.php");
 
 if (isset($_POST['title'], $_POST['description'], $_POST['link'])) {
     $title = $_POST['title'];
@@ -18,13 +18,6 @@ if ($title === '') {
 
 if ($description === '') {
     echo  'The description field is missing.<br>';
-}
-
-try {
-    $dbHandler = new PDO('sqlite:hackernews.db');
-    echo "Yay!";
-} catch (PDOException $e) {
-    die($e->getMessage());
 }
 
 $id = rand();

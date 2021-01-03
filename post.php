@@ -11,12 +11,25 @@ $statement->execute();
 
 $postId = $statement->fetchAll(PDO::FETCH_ASSOC);
 //dtata from db 
+
+// sql statment that selects the number of rows in table posts
+$sql = "SELECT COUNT(*) FROM posts";
+$statement = $dbHandler->prepare($sql);
+$statement->execute();
+echo "antal rader: " . $statement->fetchColumn() . "<br />";
+
+// Fetch all records in table posts and store them in an array
+$sql = "SELECT * FROM posts";
+$statement = $dbHandler->query($sql);
+$posts = $statement->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+    <link rel="stylesheet" href="post.css" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
@@ -29,7 +42,13 @@ $postId = $statement->fetchAll(PDO::FETCH_ASSOC);
         <a href="<?= $post['link'] ?>">This is link</a>
     <?php
     endforeach; ?>
-
+    <form action="handlecomment.php" method="post">
+        <label for="postid"></label>
+        <input type="integer" value="<?= $post['id'] ?>" id="postid" name="postid">
+        <label for="description">Write comment</label>
+        <textarea id="description" name="description" placeholder="Write something.." style="height:200px"></textarea>
+        <button type="submit">Add comment</button>
+    </form>
 </body>
 
 </html>
