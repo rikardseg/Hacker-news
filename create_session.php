@@ -30,11 +30,17 @@ $password_db = $statement->fetchColumn();
 
 // Check if password is correct. 
 // If login information is correct, create loginsession.
-if ($password_db === $password) {
-    echo "Password is correct" . "<br />";
+// if ($password_db === $password) {
+//     echo "Password is correct" . "<br />";
+//     $_SESSION['user'] = $username;
+// } else {
+//     echo "Password is incorrect" . "<br />";
+// }
+if (password_verify($password, $password_db)) {
     $_SESSION['user'] = $username;
+    echo 'Password is valid!';
 } else {
-    echo "Password is incorrect" . "<br />";
+    echo 'Invalid password.';
 }
 // if (password_verify($password, $password_db)) {
 //     unset($password_db);

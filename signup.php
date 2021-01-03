@@ -22,8 +22,8 @@
             <input type="file" name="avatar_name" id="avatar_name" />
             <label for="password">Password</label>
             <input type="password" name="password" id="password" />
-            <label for="password">Confirm password</label>
-            <input type="password" name="password" id="password" />
+            <label for="confirm_password">Confirm password</label>
+            <input type="password" name="confirm_password" id="confirm_password" />
             <button type="submit">Create account</button>
         </form>
     </main>
