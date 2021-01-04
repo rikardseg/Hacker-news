@@ -51,7 +51,7 @@ $comments = $statement->fetchAll(PDO::FETCH_ASSOC);
     endforeach; ?>
     <form action="handlecomment.php" method="post">
         <label for="postid"></label>
-        <input type="integer" value="<?= $post['id'] ?>" id="postid" name="postid">
+        <input hidden type="integer" value="<?= $post['id'] ?>" id="postid" name="postid">
         <label for="description">Write comment</label>
         <textarea id="description" name="description" placeholder="Write something.." style="height:200px"></textarea>
         <button type="submit">Add comment</button>
