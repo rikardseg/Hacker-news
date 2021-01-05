@@ -3,3 +3,7 @@ form {
   flex-direction: column;
   width: 15%;
 }
+
+p {
+  color: red;
+}

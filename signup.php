@@ -1,3 +1,20 @@
+<?php
+
+declare(strict_types=1);
+
+session_start();
+
+if (!isset($_SESSION['error_message'])) {
+    $errormessage = "";
+    echo "No error";
+} else {
+    $errormessage = $_SESSION['error_message'];
+    unset($_SESSION['error_message']);
+    echo "Error is set";
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,8 +22,10 @@
     <link rel="stylesheet" href="signup.css" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Sign up</title>
 </head>
+
+<p><?= $errormessage; ?></p>
 
 <body>
     <main>

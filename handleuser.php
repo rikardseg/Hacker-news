@@ -12,23 +12,28 @@ if (isset($_POST['username'], $_POST['email'], $_POST['biography'], $_POST['avat
     $password = $_POST['password'];
     $confirmPassword = $_POST['confirm_password'];
 } else {
-    echo "Invalid declaration in form<br>";
+    $_SESSION['error_message'] = "Invalid declaration in form";
+    header("Location: signup.php");
 }
 
 if ($username === '') {
-    echo  'The username field is missing.<br>';
+    $_SESSION['error_message'] = "The username field is missing";
+    header("Location: signup.php");
 }
 
 if ($email === '') {
-    echo  'The email field is missing.<br>';
+    $_SESSION['error_message'] = "The email field is missing.";
+    header("Location: signup.php");
 }
 
 if ($password === '') {
-    echo  'The password field is missing.<br>';
+    $_SESSION['error_message'] = "The password field is missing.";
+    header("Location: signup.php");
 }
 
 if ($password !== $confirmPassword) {
-    echo "Passwords does not match";
+    $_SESSION['error_message'] = "Passwords does not match";
+    header("Location: signup.php");
 }
 
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
