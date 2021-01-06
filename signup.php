@@ -31,6 +31,7 @@ if (!isset($_SESSION['error_message'])) {
     <main>
         <h1>Sign up</h1>
         <form action="handleuser.php" method="post">
+            <input type="hidden" name="editmode" value="new">
             <label for="username">Username</label>
             <input type="username" name="username" id="username" />
             <label for="email">E-mail</label>

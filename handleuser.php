@@ -2,15 +2,16 @@
 
 require __DIR__ . '/alwaysload.php';
 
-$redirect = header("Location: index.php");
+// $redirect = header("Location: index.php");
 
-if (isset($_POST['username'], $_POST['email'], $_POST['biography'], $_POST['avatar_name'], $_POST['password'], $_POST['confirm_password'])) {
+if (isset($_POST['username'], $_POST['email'], $_POST['biography'], $_POST['avatar_name'], $_POST['password'], $_POST['confirm_password'], $_POST['editmode'])) {
     $username = $_POST['username'];
     $email = $_POST['email'];
     $biography = trim(filter_var($_POST['biography'], FILTER_SANITIZE_SPECIAL_CHARS));
     $avatar = $_POST['avatar_name'];
     $password = $_POST['password'];
     $confirmPassword = $_POST['confirm_password'];
+    $editmode = $_POST['editmode'];
 } else {
     $_SESSION['error_message'] = "Invalid declaration in form";
     header("Location: signup.php");
@@ -49,18 +50,32 @@ $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 //     die($e->getMessage());
 // }
 
-$sql = "INSERT INTO users (user, e_mail, biography, avatar_name, password_) VALUES (:user, :e_mail, :biography, :avatar_name, :password_)";
-$statement = $dbHandler->prepare($sql);
+if ($editmode === "new") {
+    //Insert one row.
+    $sql = "INSERT INTO users (user, e_mail, biography, avatar_name, password_) VALUES (:user, :e_mail, :biography, :avatar_name, :password_)";
+    $statement = $dbHandler->prepare($sql);
 
-$statement->bindParam(':user', $username);
-$statement->bindParam(':e_mail', $email);
-$statement->bindParam(':biography', $biography);
-$statement->bindParam(':avatar_name', $avatar);
-$statement->bindParam(':password_', $hashedPassword);
+    $statement->bindParam(':user', $username);
+    $statement->bindParam(':e_mail', $email);
+    $statement->bindParam(':biography', $biography);
+    $statement->bindParam(':avatar_name', $avatar);
+    $statement->bindParam(':password_', $hashedPassword);
 
-// insert one row
-$statement->execute();
+    $statement->execute();
+} else if ($editmode === "edit") {
+    //Update one row.
+    $sql = "UPDATE users SET user=:user, e_mail=:e_mail, biography=:biography, avatar_name=:avatar_name, password_=:password_ WHERE user=:user";
+    $statement = $dbHandler->prepare($sql);
 
+    $statement->bindParam(':user', $username);
+    $statement->bindParam(':e_mail', $email);
+    $statement->bindParam(':biography', $biography);
+    $statement->bindParam(':avatar_name', $avatar);
+    $statement->bindParam(':password_', $hashedPassword);
+    $statement->execute();
+}
+
+echo "Efter execute av UPDATE" . "<br />";
 echo "YES";
 
-$redirect;
+// $redirect;

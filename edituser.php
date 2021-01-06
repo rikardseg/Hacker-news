@@ -14,12 +14,20 @@ if (!isset($_SESSION['error_message'])) {
 }
 
 // Check if user exists in table users.
+$user = $_SESSION['user'];
 $sql = "SELECT * FROM users WHERE user=:user";
 $statement = $dbHandler->prepare($sql);
-$statement->bindValue(':user', $username);
+$statement->bindParam(':user', $user);
 $statement->execute();
-// Find way to check if user does not exist.
-$password_db = $statement->fetchColumn();
+$users = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+foreach ($users as $user) :
+    $username = $user['user'];
+    $email = $user['e_mail'];
+    $biography = $user['biography'];
+    $avatar = $user['avatar_name'];
+
+endforeach;
 
 ?>
 
@@ -39,17 +47,18 @@ $password_db = $statement->fetchColumn();
     <main>
         <h1>My account</h1>
         <form action="handleuser.php" method="post">
+            <input type="hidden" name="editmode" value="edit">
             <label for="username">Username</label>
-            <input type="username" name="username" id="username" />
-            <label for="email">E-mail</label>
-            <input type="email" name="email" id="email" />
+            <input type="username" name="username" id="username" value="<?= $username; ?>" />
+            <label for=" email">E-mail</label>
+            <input type="email" name="email" id="email" value="<?= $email; ?>" />
             <label for="biography">Biography</label>
-            <textarea id="biography" name="biography" placeholder="Write something.." style="height:200px"></textarea>
+            <textarea id="biography" name="biography" style="height:200px"><?= $biography; ?></textarea>
             <label for="avatar_name">Avatar name</label>
-            <input type="file" name="avatar_name" id="avatar_name" />
-            <label for="password">Password</label>
+            <input type="file" name="avatar_name" id="avatar_name" value="<?= $avatar; ?>" />
+            <label for="password">New Password</label>
             <input type="password" name="password" id="password" />
-            <label for="confirm_password">Confirm password</label>
+            <label for="confirm_password">Confirm new password</label>
             <input type="password" name="confirm_password" id="confirm_password" />
             <button type="submit">Save changes</button>
         </form>
