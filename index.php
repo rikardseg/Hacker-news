@@ -67,25 +67,27 @@ $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
     <li><a href="login.php">Login</a></li>
     <li><a href="logout.php">Logout</a></li>
     <li><a href="signup.php">Sign up</a></li>
+    <?php if (isset($_SESSION['user'])) :
+    ?><li><a href="edituser.php">My Account</a><?php endif; ?>
+      </li>
   </ul>
   <?php foreach ($posts as $post) :
   ?>
     <h2><a href="post.php?id=<?= $post['id']; ?>"><?= $post['title']; ?></a></h2>
-    <p>
-    <form action="uservote.php" method="POST">
-      <input type="hidden" name="post_id" value="<?= $post['id']; ?>">
-      <input type="hidden" name="post_likes" value="<?= $post['id']; ?>">
-      <button type="submit" name="like" class="likes">
-        <p style="font-size:10px">&#128314;</p>
-      </button> <button type="submit" name="like" class="likes">
-        <p style="font-size:10px">&#128315;</p>
-      </button>
+    <div>
+      <form action="uservote.php" method="POST">
+        <input type="hidden" name="id" value="<?= $post['id']; ?>">
+        <button type="submit">
+          <p style="font-size:8px">&#128314;</p>
+        </button> <button type="submit">
+          <p style="font-size:8px">&#128315;</p>
+        </button>
+      </form>
       <?= $post['votes']; ?> votes | Posted by
       <?= $post['user']; ?>
     <?= $post['time_stamp'];
   endforeach; ?>
-    </p>
-    </form>
+    </div>
     <script src=" script.js"></script>
 </body>
 

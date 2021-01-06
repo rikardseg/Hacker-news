@@ -25,3 +25,6 @@ li a {
 li a:hover {
   background-color: sandybrown;
 }
+form {
+  display: inline-block;
+}
