@@ -16,7 +16,7 @@ function updateVotes($dbHandler, $user, $postsId): bool
     // Check if user already has voted on the post.
     $userHasVoted = userHasVoted($dbHandler, $user, $postsId);
 
-    if ($userHasVoted) {     // If user already has voted ==> remove that vote on post
+    if ($userHasVoted === TRUE) {     // If user already has voted ==> remove that vote on post
         $voteChange = -1;
         //      echo "User has already voted on post = " . $voteChange .  "<br />";
     } else {                    // If user has not voted ==> add vote on post
