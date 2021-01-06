@@ -26,3 +26,7 @@ CREATE TABLE comments (
 	user varchar,
 	description varchar
 );
+
+CREATE TABLE user_vote ( 
+	user VARCHAR, posts_id INT , time_stamp VARCHAR
+	);

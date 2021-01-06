@@ -69,14 +69,23 @@ $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
     <li><a href="signup.php">Sign up</a></li>
   </ul>
   <?php foreach ($posts as $post) :
-  ?><div>
-      <h2><a href="post.php?id=<?= $post['id']; ?>"><?= $post['title']; ?></a></h2>
-      <p><?= $post['votes']; ?> Posted by
-        <?= $post['user']; ?>
-      <?= $post['time_stamp'];
-    endforeach; ?>
-      </p>
-    </div>
+  ?>
+    <h2><a href="post.php?id=<?= $post['id']; ?>"><?= $post['title']; ?></a></h2>
+    <p>
+    <form action="uservote.php" method="POST">
+      <input type="hidden" name="post_id" value="<?= $post['id']; ?>">
+      <input type="hidden" name="post_likes" value="<?= $post['id']; ?>">
+      <button type="submit" name="like" class="likes">
+        <p style="font-size:10px">&#128314;</p>
+      </button> <button type="submit" name="like" class="likes">
+        <p style="font-size:10px">&#128315;</p>
+      </button>
+      <?= $post['votes']; ?> votes | Posted by
+      <?= $post['user']; ?>
+    <?= $post['time_stamp'];
+  endforeach; ?>
+    </p>
+    </form>
     <script src=" script.js"></script>
 </body>
 

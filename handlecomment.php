@@ -20,7 +20,6 @@ $time_stamp = date("Y-m-d H:i:s");
 $sql = "INSERT INTO comments (posts_id, id, user, description, time_stamp) VALUES (:posts_id, :id, :user, :description, :time_stamp)";
 $statement = $dbHandler->prepare($sql);
 
-
 $statement->bindParam(':posts_id', $postId);
 $statement->bindParam(':id', $id);
 $statement->bindParam(':user', $user);
