@@ -2,10 +2,10 @@
 
 require __DIR__ . '/alwaysload.php';
 
-$sort_option = "";
+$sortOption = "";
 
 if (isset($_GET['sort_option'])) {
-  $sort_option = $_GET['sort_option'];
+  $sortOption = $_GET['sort_option'];
 }
 
 // sql statment that selects the number of rows in table posts
@@ -15,9 +15,9 @@ $statement->execute();
 echo "antal rader: " . $statement->fetchColumn() . "<br />";
 
 // Fetch all records in table posts and store them in an array; sort according to $sort_order
-if ($sort_option === "time_stamp") {
+if ($sortOption === "time_stamp") {
   $sql = "SELECT * FROM posts ORDER BY time_stamp DESC";
-} else if ($sort_option === "votes") {
+} else if ($sortOption === "votes") {
   $sql = "SELECT * FROM posts ORDER BY votes DESC";
 } else {
   $sql = "SELECT * FROM posts";
@@ -53,6 +53,7 @@ $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
 <body>
   <?php if (isset($_SESSION['user'])) : ?>
     <p>Logged in, <?php echo $_SESSION['user']; ?>!</p>
+    <img src="<?php echo $_SESSION['avatar'] ?>" alt="">
   <?php endif; ?>
   <?php if (!isset($_SESSION['user'])) : ?>
     <p>Logged out!</p>

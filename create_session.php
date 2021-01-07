@@ -25,8 +25,16 @@ $sql = "SELECT password_ FROM users WHERE user=:user";
 $statement = $dbHandler->prepare($sql);
 $statement->bindValue(':user', $username);
 $statement->execute();
-// Find way to check if user does not exist.
+
 $password_db = $statement->fetchColumn();
+// Find way to check if user does not exist.
+
+$sql = "SELECT avatar_name FROM users WHERE user=:user";
+$statement = $dbHandler->prepare($sql);
+$statement->bindValue(':user', $username);
+$statement->execute();
+
+$avatar = $statement->fetchColumn();
 
 // Check if password is correct. 
 // If login information is correct, create loginsession.
@@ -38,6 +46,7 @@ $password_db = $statement->fetchColumn();
 // }
 if (password_verify($password, $password_db)) {
     $_SESSION['user'] = $username;
+    $_SESSION['avatar'] = $avatar;
     echo 'Password is valid!';
 } else {
     echo 'Invalid password.';

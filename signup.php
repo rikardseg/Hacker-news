@@ -30,20 +30,20 @@ if (!isset($_SESSION['error_message'])) {
 <body>
     <main>
         <h1>Sign up</h1>
-        <form action="handleuser.php" method="post">
+        <form action="handleuser.php" method="post" enctype="multipart/form-data">
             <input type="hidden" name="editmode" value="new">
             <label for="username">Username</label>
-            <input type="username" name="username" id="username" />
+            <input type="username" name="username" id="username" required />
             <label for="email">E-mail</label>
-            <input type="email" name="email" id="email" />
+            <input type="email" name="email" id="email" required />
             <label for="biography">Biography</label>
             <textarea id="biography" name="biography" placeholder="Write something.." style="height:200px"></textarea>
-            <label for="avatar_name">Avatar name</label>
-            <input type="file" name="avatar_name" id="avatar_name" />
+            <label for="avatar_name">Avatar</label>
+            <input type="file" name="avatar_name" id="avatar_name" accept=".png, .jpeg" />
             <label for="password">Password</label>
-            <input type="password" name="password" id="password" />
+            <input type="password" name="password" id="password" required />
             <label for="confirm_password">Confirm password</label>
-            <input type="password" name="confirm_password" id="confirm_password" />
+            <input type="password" name="confirm_password" id="confirm_password" required />
             <button type="submit">Create account</button>
         </form>
     </main>

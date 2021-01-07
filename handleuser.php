@@ -2,13 +2,13 @@
 
 require __DIR__ . '/alwaysload.php';
 
-// $redirect = header("Location: index.php");
+$redirect = header("Location: index.php");
 
-if (isset($_POST['username'], $_POST['email'], $_POST['biography'], $_POST['avatar_name'], $_POST['password'], $_POST['confirm_password'], $_POST['editmode'])) {
+if (isset($_POST['username'], $_POST['email'], $_POST['biography'], $_FILES['avatar_name'], $_POST['password'], $_POST['confirm_password'], $_POST['editmode'])) {
     $username = $_POST['username'];
     $email = $_POST['email'];
     $biography = trim(filter_var($_POST['biography'], FILTER_SANITIZE_SPECIAL_CHARS));
-    $avatar = $_POST['avatar_name'];
+    $avatar = $_FILES['avatar_name']['name'];
     $password = $_POST['password'];
     $confirmPassword = $_POST['confirm_password'];
     $editmode = $_POST['editmode'];
@@ -39,6 +39,13 @@ if ($password !== $confirmPassword) {
 
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     echo 'The email is not valid email address.';
+}
+
+if (isset($_FILES['avatar_name'])) {
+    $destination = __DIR__ . '/avatars/' . $avatar;
+    $avatarTemp = $_FILES['avatar_name']['tmp_name'];
+    move_uploaded_file($avatarTemp, $destination);
+    // move_uploaded_file($_FILES['avatar_name']['tmp_name'], __DIR__ . '/avatars/');
 }
 
 $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
@@ -78,4 +85,4 @@ if ($editmode === "new") {
 echo "Efter execute av UPDATE" . "<br />";
 echo "YES";
 
-// $redirect;
+$redirect;
