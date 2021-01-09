@@ -3,9 +3,16 @@
 require __DIR__ . '/autoload.php';
 
 $sortOption = "";
+$userLoggedIn;
 
 if (isset($_GET['sort_option'])) {
   $sortOption = $_GET['sort_option'];
+}
+
+if (!isset($_SESSION['user'])) {
+  $userLoggedIn = false;
+} else {
+  $userLoggedIn = true;
 }
 
 // sql statment that selects the number of rows in table posts
@@ -44,7 +51,7 @@ $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
 <html lang="en">
 
 <head>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="index.css" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Document</title>
@@ -74,21 +81,23 @@ $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
   <?php foreach ($posts as $post) :
   ?>
     <h2><a href="post.php?id=<?= $post['id']; ?>"><?= $post['title']; ?></a></h2>
-    <div>
-      <form action="uservote.php" method="POST">
-        <input type="hidden" name="id" value="<?= $post['id']; ?>">
-        <button type="submit">
-          <p style="font-size:8px">&#128314;</p>
-        </button> <button type="submit">
-          <p style="font-size:8px">&#128315;</p>
-        </button>
-      </form>
-      <?= $post['votes']; ?> votes | Posted by
-      <?= $post['user']; ?>
+    <form action="uservote.php" method="POST">
+      <input type="hidden" name="id" value="<?= $post['id']; ?>">
+      <button type="submit">
+        <p style="font-size:8px">&#128314;</p>
+      </button> <button type="submit">
+        <p style="font-size:8px">&#128315;</p>
+      </button>
+    </form>
+    <?= $post['votes']; ?> votes | Posted by
+    <?= $post['user']; ?>
     <?= $post['time_stamp'];
+    if ($userLoggedIn === true and ($_SESSION['user'] === $post['user'])) {
+    ?><p class="editpost"><a href="editpost.php?id=<?= $post['id']; ?>">Edit</a></p>
+  <?php
+    }
   endforeach; ?>
-    </div>
-    <script src=" script.js"></script>
+  <script src=" script.js"></script>
 </body>
 
 </html>

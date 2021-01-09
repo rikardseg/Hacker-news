@@ -39,7 +39,7 @@ $comments = $statement->fetchAll(PDO::FETCH_ASSOC);
     <link rel="stylesheet" href="post.css" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Post</title>
 </head>
 
 <body>
@@ -60,8 +60,11 @@ $comments = $statement->fetchAll(PDO::FETCH_ASSOC);
     <?php foreach ($comments as $comment) :
     ?><div>
             <em><?= $comment['user']; ?> <?= $comment['time_stamp']; ?></em>
-            <p><?= $comment['description'];
-            endforeach; ?>
+            <?php if ($_SESSION['user'] === $comment['user']) {
+            ?><p class="editcomment"><a href="comment.php?id=<?= $comment['id']; ?>">Edit</a></p>
+            <?php
+            } ?><p><?= $comment['description'];
+                endforeach; ?>
             </p>
         </div>
 </body>

@@ -33,7 +33,7 @@ if (!isset($_SESSION['error_message'])) {
         <form action="handleuser.php" method="post" enctype="multipart/form-data">
             <input type="hidden" name="editmode" value="new">
             <label for="username">Username</label>
-            <input type="username" name="username" id="username" required />
+            <input type="text" name="username" id="username" required />
             <label for="email">E-mail</label>
             <input type="email" name="email" id="email" required />
             <label for="biography">Biography</label>

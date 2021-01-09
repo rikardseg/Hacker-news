@@ -49,7 +49,7 @@ endforeach;
         <form action="handleuser.php" method="post" enctype="multipart/form-data">
             <input type="hidden" name="editmode" value="edit">
             <label for="username">Username</label>
-            <input type="username" name="username" id="username" value="<?= $username; ?>" />
+            <input type="text" name="username" id="username" value="<?= $username; ?>" readonly />
             <label for=" email">E-mail</label>
             <input type="email" name="email" id="email" value="<?= $email; ?>" />
             <label for="biography">Biography</label>

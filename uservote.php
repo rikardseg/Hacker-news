@@ -8,12 +8,11 @@ if (isset($_POST['id'])) {
     $_SESSION['error_message'] = "Invalid declaration in form";
     echo "error";
 }
-echo $postsId;
 
 $user = $_SESSION['user'];
 
-echo $user;
-
-updateVotes($dbHandler, $user, $postsId);
+if (isset($user)) {
+    updateVotes($dbHandler, $user, $postsId);
+}
 
 header("Location: index.php");

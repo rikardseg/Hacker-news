@@ -1,5 +1,7 @@
-// const login = document.querySelector("li:last-child");
+// const deleteButton = document.querySelector(".delete");
 
-// login.addEventListener("click", () => {
-//   window.location.replace("index2.html");
+// deleteButton.addEventListener("click", function () {
+//   if (!confirm("Are you sure?")) {
+//     return false;
+//   }
 // });

@@ -28,3 +28,7 @@ li a:hover {
 form {
   display: inline-block;
 }
+
+.editpost {
+  display: inline-block;
+}
