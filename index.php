@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__ . '/alwaysload.php';
+require __DIR__ . '/autoload.php';
 
 $sortOption = "";
 
@@ -53,7 +53,6 @@ $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
 <body>
   <?php if (isset($_SESSION['user'])) : ?>
     <p>Logged in, <?php echo $_SESSION['user']; ?>!</p>
-    <img src="<?php echo $_SESSION['avatar'] ?>" alt="">
   <?php endif; ?>
   <?php if (!isset($_SESSION['user'])) : ?>
     <p>Logged out!</p>

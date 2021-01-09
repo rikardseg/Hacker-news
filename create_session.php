@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__ . '/alwaysload.php';
+require __DIR__ . '/autoload.php';
 
 // Check if user exists and then login.
 // Receiving form data.

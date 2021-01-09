@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__ . '/alwaysload.php';
+require __DIR__ . '/autoload.php';
 
 if (isset($_POST['postid'], $_POST['description'])) {
     $postId = $_POST['postid'];

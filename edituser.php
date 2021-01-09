@@ -46,7 +46,7 @@ endforeach;
 <body>
     <main>
         <h1>My account</h1>
-        <form action="handleuser.php" method="post">
+        <form action="handleuser.php" method="post" enctype="multipart/form-data">
             <input type="hidden" name="editmode" value="edit">
             <label for="username">Username</label>
             <input type="username" name="username" id="username" value="<?= $username; ?>" />

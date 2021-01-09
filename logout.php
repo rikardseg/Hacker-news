@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__ . '/alwaysload.php';
+require __DIR__ . '/autoload.php';
 // Remove all info in the session variables
 session_unset();
 // End the current session

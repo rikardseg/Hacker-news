@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__ . '/alwaysload.php';
+require __DIR__ . '/autoload.php';
 
 // Check if session variable is set and exist
 if (!isset($_SESSION['user'])) {
