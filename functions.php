@@ -8,9 +8,6 @@ function updateVotes($dbHandler, $user, $postsId): bool
     //        return FALSE;
     //    }
 
-    //    echo "user = " . $user .  "<br />";
-    //    echo "postsId = " . $postsId .  "<br />";
-
     $voteChange = 0;
 
     // Check if user already has voted on the post.
@@ -21,25 +18,23 @@ function updateVotes($dbHandler, $user, $postsId): bool
         //      echo "User has already voted on post = " . $voteChange .  "<br />";
     } else {                    // If user has not voted ==> add vote on post
         $voteChange = +1;
-        //      echo "User has not voted on post yet = " . $voteChange .  "<br />";
+        //      echo "User has not voted on post yet
     }
 
     $sql = "SELECT votes FROM posts WHERE id=:id";
     $statement = $dbHandler->prepare($sql);
-    $statement->bindValue(':id', $postsId);
+    $statement->bindParam(':id', $postsId, PDO::PARAM_INT);
     $statement->execute();
 
     // Change value of votes and then update post record
     $currentVote = $statement->fetchColumn();
-    //   echo "current_vote = " . $currentVote .  "<br />";
-    //   echo "change = " . $voteChange .  "<br />";
 
     $currentVote += $voteChange;
 
     $sql = "UPDATE posts SET votes=:votes  WHERE id=:id ";
     $statement = $dbHandler->prepare($sql);
-    $statement->bindValue(':votes', $currentVote);
-    $statement->bindValue(':id', $postsId);
+    $statement->bindParam(':votes', $currentVote, PDO::PARAM_INT);
+    $statement->bindParam(':id', $postsId, PDO::PARAM_INT);
     $statement->execute();
 
     if ($voteChange === 1) {
@@ -56,9 +51,9 @@ function addVote($dbHandler, $user, $postsId): bool
     $time = date("Y-m-d H:i:s");
     $sql = "INSERT INTO user_vote (user, posts_id, time_stamp) VALUES (:user, :posts_id, :time_stamp)";
     $statement = $dbHandler->prepare($sql);
-    $statement->bindValue(':user', $user);
-    $statement->bindValue(':posts_id', $postsId);
-    $statement->bindValue(':time_stamp', $time);
+    $statement->bindParam(':user', $user, PDO::PARAM_STR);
+    $statement->bindParam(':posts_id', $postsId, PDO::PARAM_INT);
+    $statement->bindParam(':time_stamp', $time, PDO::PARAM_STR);
     $statement->execute();
 
     return TRUE;
@@ -67,14 +62,9 @@ function addVote($dbHandler, $user, $postsId): bool
 function removeVote($dbHandler, $user, $postsId): bool
 {
     // Remove record in user_vote to mark that user has removed the vote
-
-    //    echo "Inne i remove_vote()" . "<br>";
-    //    echo "user  " . $user . "<br>";
-    //    echo "postsId  " . $postsId . "<br>";
-
     $sql = "DELETE FROM user_vote WHERE user=:user AND posts_id=:posts_id";
     $statement = $dbHandler->prepare($sql);
-    $statement->bindValue(':user', $user);
+    $statement->bindValue(':user', $user, PDO::PARAM_STR);
     $statement->bindValue(':posts_id', $postsId, PDO::PARAM_INT);
     $statement->execute();
 
@@ -84,20 +74,13 @@ function removeVote($dbHandler, $user, $postsId): bool
 function userHasVoted($dbHandler, $user, $postsId): bool
 {
     // Check if user has already voted, meaning that post exist in user_vote
-
-    //    echo "Inne i user_has_voted() " . "<br />";
-    //    echo "user = " . $user .  "<br />";
-    //    echo "postsId = " . $postsId .  "<br />";
-
     $sql = "SELECT COUNT(*) FROM user_vote WHERE user=:user AND posts_id=:posts_id";
 
     $statement = $dbHandler->prepare($sql);
-    $statement->bindValue(':posts_id', $postsId);
-    $statement->bindValue(':user', $user);
+    $statement->bindValue(':posts_id', $postsId, PDO::PARAM_INT);
+    $statement->bindValue(':user', $user, PDO::PARAM_STR);
     $statement->execute();
     $rowExist = $statement->fetchColumn();  // Return number of rows/records in table
-
-    //    echo "antal rader: " . $rowExist . "<br />";
 
     if ($rowExist) {
         return TRUE;

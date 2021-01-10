@@ -3,9 +3,9 @@
 require __DIR__ . '/check_session.php';
 
 if (isset($_POST['commentid'], $_POST['postid'], $_POST['description'])) {
-    $postId = $_POST['postid'];
-    $commentId = $_POST['commentid'];
-    $description = trim(filter_var($_POST['description'], FILTER_SANITIZE_SPECIAL_CHARS));
+    $postId = trim(filter_var($_POST['postid'], FILTER_SANITIZE_NUMBER_INT));
+    $commentId = trim(filter_var($_POST['commentid'], FILTER_SANITIZE_NUMBER_INT));
+    $description = trim(filter_var($_POST['description'], FILTER_SANITIZE_STRING));
 } else {
     echo "error";
 }
@@ -17,9 +17,9 @@ if (isset($_POST['submit'])) {
     $sql = "UPDATE comments SET description=:description, time_stamp=:time_stamp WHERE id=:id";
     $statement = $dbHandler->prepare($sql);
 
-    $statement->bindParam(':id', $commentId);
-    $statement->bindParam(':description', $description);
-    $statement->bindParam(':time_stamp', $timeStamp);
+    $statement->bindParam(':id', $commentId, PDO::PARAM_INT);
+    $statement->bindParam(':description', $description, PDO::PARAM_STR);
+    $statement->bindParam(':time_stamp', $timeStamp, PDO::PARAM_STR);
     $statement->execute();
 } else if (isset($_POST['delete'])) {
 

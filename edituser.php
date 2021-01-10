@@ -17,7 +17,7 @@ if (!isset($_SESSION['error_message'])) {
 $user = $_SESSION['user'];
 $sql = "SELECT * FROM users WHERE user=:user";
 $statement = $dbHandler->prepare($sql);
-$statement->bindParam(':user', $user);
+$statement->bindParam(':user', $user, PDO::PARAM_STR);
 $statement->execute();
 $users = $statement->fetchAll(PDO::FETCH_ASSOC);
 

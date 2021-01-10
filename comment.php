@@ -8,7 +8,7 @@ $id = $_GET['id'];
 
 $sql = "SELECT * FROM comments WHERE id = :id";
 $statement = $dbHandler->prepare($sql);
-$statement->bindParam(":id", $id);
+$statement->bindParam(":id", $id, PDO::PARAM_INT);
 $statement->execute();
 
 $comments = $statement->fetchAll(PDO::FETCH_ASSOC);

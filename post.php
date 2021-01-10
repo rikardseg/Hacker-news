@@ -6,7 +6,7 @@ $id = $_GET['id'];
 
 $sql = "SELECT * FROM posts WHERE id = :id";
 $statement = $dbHandler->prepare($sql);
-$statement->bindParam(":id", $id);
+$statement->bindParam(":id", $id, PDO::PARAM_INT);
 $statement->execute();
 
 $postRow = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -17,15 +17,9 @@ $statement = $dbHandler->prepare($sql);
 $statement->execute();
 echo "antal rader: " . $statement->fetchColumn() . "<br />";
 
-// Fetch all records in table comments and store them in an array
-// $sql = "SELECT * FROM comments WHERE posts_id=:posts_id";
-// $statement->bindValue(":posts_id", $id);
-// $statement = $dbHandler->query($sql);
-// $statement->execute();
-
 $sql = "SELECT * FROM comments WHERE posts_id=:posts_id";
 $statement = $dbHandler->query($sql);
-$statement->bindParam(":posts_id", $id);
+$statement->bindParam(":posts_id", $id, PDO::PARAM_INT);
 $statement->execute();
 
 $comments = $statement->fetchAll(PDO::FETCH_ASSOC);

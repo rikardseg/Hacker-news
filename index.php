@@ -73,7 +73,8 @@ $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
     <li><a href="index.php?sort_option=time_stamp">Newest posts</a></li>
     <li><a href="login.php">Login</a></li>
     <li><a href="logout.php">Logout</a></li>
-    <li><a href="signup.php">Sign up</a></li>
+    <?php if (!isset($_SESSION['user'])) :
+    ?><li><a href="signup.php">Sign up</a></li><?php endif; ?>
     <?php if (isset($_SESSION['user'])) :
     ?><li><a href="edituser.php">My Account</a><?php endif; ?>
       </li>

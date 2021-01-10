@@ -3,10 +3,10 @@
 require __DIR__ . '/check_session.php';
 
 if (isset($_POST['postid'], $_POST['title'], $_POST['description'], $_POST['link'])) {
-    $id = $_POST['postid'];
-    $title = $_POST['title'];
+    $id = trim(filter_var($_POST['postid'], FILTER_SANITIZE_NUMBER_INT));
+    $title = trim(filter_var($_POST['title'], FILTER_SANITIZE_STRING));
     $description = trim(filter_var($_POST['description'], FILTER_SANITIZE_SPECIAL_CHARS));
-    $link = $_POST['link'];
+    $link = trim(filter_var($_POST['link'], FILTER_SANITIZE_URL));
 } else {
     echo "error";
 }
@@ -17,11 +17,11 @@ if (isset($_POST['submit'])) {
     $sql = "UPDATE posts SET title=:title, description=:description, link=:link, time_stamp=:time_stamp WHERE id=:id";
     $statement = $dbHandler->prepare($sql);
 
-    $statement->bindParam(':id', $id);
-    $statement->bindParam(':title', $title);
-    $statement->bindParam(':description', $description);
-    $statement->bindParam(':link', $link);
-    $statement->bindParam(':time_stamp', $timeStamp);
+    $statement->bindParam(':id', $id, PDO::PARAM_INT);
+    $statement->bindParam(':title', $title, PDO::PARAM_STR);
+    $statement->bindParam(':description', $description, PDO::PARAM_STR);
+    $statement->bindParam(':link', $link, PDO::PARAM_STR);
+    $statement->bindParam(':time_stamp', $timeStamp, PDO::PARAM_STR);
 
     $statement->execute();
 } else if (isset($_POST['delete'])) {
