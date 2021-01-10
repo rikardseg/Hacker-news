@@ -15,12 +15,6 @@ if (!isset($_SESSION['user'])) {
   $userLoggedIn = true;
 }
 
-// sql statment that selects the number of rows in table posts
-$sql = "SELECT COUNT(*) FROM posts";
-$statement = $dbHandler->prepare($sql);
-$statement->execute();
-echo "antal rader: " . $statement->fetchColumn() . "<br />";
-
 // Fetch all records in table posts and store them in an array; sort according to $sort_order
 if ($sortOption === "time_stamp") {
   $sql = "SELECT * FROM posts ORDER BY time_stamp DESC";
@@ -29,21 +23,15 @@ if ($sortOption === "time_stamp") {
 } else {
   $sql = "SELECT * FROM posts";
 }
-echo "$sql";
 // Fetch all records in table posts and store them in an array
 $statement = $dbHandler->query($sql);
 $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-// foreach ($posts as $post) :
-//   echo $post['id'];
-//   echo $post['user'];
-//   echo $post['title'];
-//   echo $post['description'];
-//   echo $post['link'];
-//   echo $post['votes'];
-//   echo $post['time_stamp'];
-//   echo "<br />";
-// endforeach;
+// Sql statment that selects the number of rows in table comments.
+$sql = "SELECT COUNT(*) FROM comments";
+$statement = $dbHandler->prepare($sql);
+$statement->execute();
+$numberOfComments = $statement->fetchColumn();
 
 ?>
 
@@ -68,7 +56,8 @@ $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
     <h1>Hacker News</h1>
   </header>
   <ul>
-    <li><a href="newpost.php">Create new post</a></li>
+    <?php if (isset($_SESSION['user'])) :
+    ?><li><a href="newpost.php">Create new post</a></li><?php endif; ?>
     <li><a href="index.php?sort_option=votes">Most popular</a></li>
     <li><a href="index.php?sort_option=time_stamp">Newest posts</a></li>
     <li><a href="login.php">Login</a></li>
@@ -92,6 +81,7 @@ $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
     </form>
     <?= $post['votes']; ?> votes | Posted by
     <?= $post['user']; ?>
+    <?= $numberOfComments; ?> Comments
     <?= $post['time_stamp'];
     if ($userLoggedIn === true and ($_SESSION['user'] === $post['user'])) {
     ?><p class="editpost"><a href="editpost.php?id=<?= $post['id']; ?>">Edit</a></p>

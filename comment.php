@@ -34,7 +34,8 @@ endforeach;
 
 <body>
     <form action="editcomment.php" method="post">
-        <button type="delete" class="delete" name="delete" onclick="if (!confirm('Are you sure?')) { return false }">Delete comment</button>
+        <button type="submit" name="return">Return</button>
+        <button type="submit" class="delete" name="delete" onclick="if (!confirm('Are you sure?')) { return false }">Delete comment</button>
         <input hidden type="integer" value="<?= $commentId; ?>" id="commentid" name="commentid">
         <input hidden type="integer" value="<?= $postId; ?>" id="postid" name="postid">
         <label for="description">Comment</label>

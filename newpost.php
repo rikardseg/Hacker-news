@@ -17,9 +17,9 @@ require __DIR__ . '/check_session.php' ?>
         <h1>Create new post</h1>
         <form action="handlepost.php" method="post">
             <label for="title">Title</label>
-            <input type="text" name="title" id="title" />
+            <input type="text" name="title" id="title" required />
             <label for="description">Description</label>
-            <textarea id="description" name="description" placeholder="Write something.." style="height:200px"></textarea>
+            <textarea id="description" name="description" placeholder="Write something.." style="height:200px" required></textarea>
             <label for="Link">Link</label>
             <input type="url" name="link" id="link">
             <button type="submit">Create</button>

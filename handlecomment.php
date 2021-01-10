@@ -9,8 +9,16 @@ if (isset($_POST['postid'], $_POST['description'])) {
     echo "Invalid declaration in form<br>";
 }
 
+// Check if session variable is set and exist
+if (!isset($_SESSION['user'])) {
+    // Session not initiated => User is redirected to post page
+    $_SESSION['error_message'] = "Please login to comment.";
+    header("Location: post.php?id=" . $postId);
+}
+
 if ($description === '') {
-    echo  'The comment field is missing.<br>';
+    $_SESSION['error_message'] = "The comment field is missing.";
+    header("Location: post.php?id=" . $postId);
 }
 
 $id = NULL;

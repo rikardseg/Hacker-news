@@ -6,11 +6,9 @@ session_start();
 
 if (!isset($_SESSION['error_message'])) {
     $errormessage = "";
-    echo "No error";
 } else {
     $errormessage = $_SESSION['error_message'];
     unset($_SESSION['error_message']);
-    echo "Error is set";
 }
 
 ?>
@@ -25,13 +23,13 @@ if (!isset($_SESSION['error_message'])) {
     <title>Sign up</title>
 </head>
 
-<p><?= $errormessage; ?></p>
+<p class="errormessage"><?= $errormessage; ?></p>
 
 <body>
     <main>
         <h1>Sign up</h1>
         <form action="handleuser.php" method="post" enctype="multipart/form-data">
-            <input type="hidden" name="editmode" value="new">
+            <input type="hidden" name="editmode" value="new" required>
             <label for="username">Username</label>
             <input type="text" name="username" id="username" required />
             <label for="email">E-mail</label>

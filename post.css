@@ -7,3 +7,7 @@ form {
 .editcomment {
   display: inline-block;
 }
+
+.errormessage {
+  color: red;
+}

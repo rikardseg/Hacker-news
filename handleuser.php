@@ -50,6 +50,16 @@ if (isset($_FILES['avatar_name'])) {
 $hashedPassword = trim(password_hash($password, PASSWORD_DEFAULT));
 
 if ($editmode === "new") {
+    // Check if user alreday exist and if so, return with error message set
+    $sql = "SELECT user FROM users WHERE user=:user";
+    $statement = $dbHandler->prepare($sql);
+    $statement->bindParam(':user', $username, PDO::PARAM_STR);
+    $statement->execute();
+    $userDb = $statement->fetchColumn();
+    if ($userDb === $username) {
+        $_SESSION['error_message'] = "User already exist! Try again and use another username";
+        header("Location: signup.php");
+    }
     //Insert one row.
     $sql = "INSERT INTO users (user, e_mail, biography, avatar_name, password_) VALUES (:user, :e_mail, :biography, :avatar_name, :password_)";
     $statement = $dbHandler->prepare($sql);

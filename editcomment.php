@@ -27,8 +27,8 @@ if (isset($_POST['submit'])) {
     $statement = $dbHandler->prepare($sql);
     $statement->bindParam(':id', $commentId, PDO::PARAM_INT);
     $statement->execute();
-} else {
-    echo "Don't know ... <br>";
+} else if (isset($_POST['return'])) {
+    header("Location: post.php?id=" . $postId);
 }
 
 header("Location: post.php?id=" . $postId);

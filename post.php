@@ -2,6 +2,13 @@
 
 require __DIR__ . '/autoload.php';
 
+if (!isset($_SESSION['error_message'])) {
+    $errormessage = "";
+} else {
+    $errormessage = $_SESSION['error_message'];
+    unset($_SESSION['error_message']);
+}
+
 $id = $_GET['id'];
 
 $sql = "SELECT * FROM posts WHERE id = :id";
@@ -10,12 +17,6 @@ $statement->bindParam(":id", $id, PDO::PARAM_INT);
 $statement->execute();
 
 $postRow = $statement->fetchAll(PDO::FETCH_ASSOC);
-
-// Sql statment that selects the number of rows in table comments.
-$sql = "SELECT COUNT(*) FROM comments";
-$statement = $dbHandler->prepare($sql);
-$statement->execute();
-echo "antal rader: " . $statement->fetchColumn() . "<br />";
 
 $sql = "SELECT * FROM comments WHERE posts_id=:posts_id";
 $statement = $dbHandler->query($sql);
@@ -43,11 +44,12 @@ $comments = $statement->fetchAll(PDO::FETCH_ASSOC);
         <a href="<?= $post['link'] ?>">This is link</a>
     <?php
     endforeach; ?>
+    <p class="errormessage"><?= $errormessage; ?></p>
     <form action="handlecomment.php" method="post">
         <label for="postid"></label>
         <input hidden type="integer" value="<?= $post['id'] ?>" id="postid" name="postid">
         <label for="description">Write comment</label>
-        <textarea id="description" name="description" placeholder="Write something.." style="height:200px"></textarea>
+        <textarea id="description" name="description" placeholder="Write something.." style="height:200px" required></textarea>
         <button type="submit">Add comment</button>
     </form>
 
