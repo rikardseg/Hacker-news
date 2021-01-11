@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-require __DIR__ . '/check_session.php';
+require __DIR__ . '/app/check_session.php';
 
 $id = $_GET['id'];
 
@@ -25,7 +25,7 @@ endforeach;
 <html lang="en">
 
 <head>
-    <link rel="stylesheet" href="post.css">
+    <link rel="stylesheet" href="/assets/styles/form.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Comment</title>
@@ -33,7 +33,7 @@ endforeach;
 
 <body>
 
-    <form action="updatepost.php" method="post">
+    <form action="/app/posts/updatepost.php" method="post">
         <button type="delete" name="delete" onclick="if (!confirm('Are you sure?')) { return false }">Delete post</button>
         <input hidden type="integer" value="<?= $id; ?>" id="postid" name="postid">
         <label for="title">Title</label>

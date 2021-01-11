@@ -1,0 +1,49 @@
+h1 {
+  color: brown;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: brown;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 7px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: sandybrown;
+}
+
+.editpost {
+  display: inline-block;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 15%;
+}
+
+.upvoteButton {
+  display: inline-block;
+}
+
+.editcomment {
+  display: inline-block;
+}
+
+.errormessage {
+  color: red;
+}

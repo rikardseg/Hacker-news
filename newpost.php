@@ -1,12 +1,12 @@
 <?php
 
-require __DIR__ . '/check_session.php' ?>
+require __DIR__ . '/app/check_session.php' ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <link rel="stylesheet" href="newpost.css">
+    <link rel="stylesheet" href="/assets/styles/form.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>New post</title>
@@ -15,7 +15,7 @@ require __DIR__ . '/check_session.php' ?>
 <body>
     <main>
         <h1>Create new post</h1>
-        <form action="handlepost.php" method="post">
+        <form action="/app/posts/handlepost.php" method="post">
             <label for="title">Title</label>
             <input type="text" name="title" id="title" required />
             <label for="description">Description</label>

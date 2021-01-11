@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <link rel="stylesheet" href="login.css" />
+  <link rel="stylesheet" href="/assets/styles/form.css" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Login</title>
@@ -11,7 +11,7 @@
 <body>
   <main>
     <h1>Login</h1>
-    <form action="create_session.php" method="post">
+    <form action="/app/users/create_session.php" method="post">
       <label for="username">Username</label>
       <input type="text" name="username" id="username" required />
       <label for="password">Password</label>

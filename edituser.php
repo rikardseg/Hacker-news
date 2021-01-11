@@ -2,15 +2,13 @@
 
 declare(strict_types=1);
 
-require __DIR__ . '/check_session.php';
+require __DIR__ . '/app/check_session.php';
 
 if (!isset($_SESSION['error_message'])) {
     $errormessage = "";
-    echo "No error";
 } else {
     $errormessage = $_SESSION['error_message'];
     unset($_SESSION['error_message']);
-    echo "Error is set";
 }
 
 // Check if user exists in table users.
@@ -35,7 +33,7 @@ endforeach;
 <html lang="en">
 
 <head>
-    <link rel="stylesheet" href="signup.css" />
+    <link rel="stylesheet" href="/assets/styles/form.css" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My account</title>
@@ -46,7 +44,7 @@ endforeach;
 <body>
     <main>
         <h1>My account</h1>
-        <form action="handleuser.php" method="post" enctype="multipart/form-data">
+        <form action="/app/users/handleuser.php" method="post" enctype="multipart/form-data">
             <input type="hidden" name="editmode" value="edit">
             <label for="username">Username</label>
             <input type="text" name="username" id="username" value="<?= $username; ?>" readonly />
@@ -54,7 +52,8 @@ endforeach;
             <input type="email" name="email" id="email" value="<?= $email; ?>" />
             <label for="biography">Biography</label>
             <textarea id="biography" name="biography" style="height:200px"><?= $biography; ?></textarea>
-            <label for="avatar_name">Avatar name</label>
+            <label for="avatar_name">Avatar</label>
+            <img src="/avatars/<?= $avatar; ?>" alt="">
             <input type="file" name="avatar_name" id="avatar_name" value="<?= $avatar; ?>" />
             <label for="password">New Password</label>
             <input type="password" name="password" id="password" />
@@ -63,6 +62,7 @@ endforeach;
             <button type="submit">Save changes</button>
         </form>
     </main>
+
 
 </body>
 

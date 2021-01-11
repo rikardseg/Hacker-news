@@ -17,7 +17,7 @@ if (!isset($_SESSION['error_message'])) {
 <html lang="en">
 
 <head>
-    <link rel="stylesheet" href="signup.css" />
+    <link rel="stylesheet" href="/assets/styles/form.css" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign up</title>
@@ -28,7 +28,7 @@ if (!isset($_SESSION['error_message'])) {
 <body>
     <main>
         <h1>Sign up</h1>
-        <form action="handleuser.php" method="post" enctype="multipart/form-data">
+        <form action="/app/users/handleuser.php" method="post" enctype="multipart/form-data">
             <input type="hidden" name="editmode" value="new" required>
             <label for="username">Username</label>
             <input type="text" name="username" id="username" required />

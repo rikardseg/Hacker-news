@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__ . '/autoload.php';
+require __DIR__ . '/app/autoload.php';
 
 if (!isset($_SESSION['error_message'])) {
     $errormessage = "";
@@ -31,7 +31,7 @@ $comments = $statement->fetchAll(PDO::FETCH_ASSOC);
 <html lang="en">
 
 <head>
-    <link rel="stylesheet" href="post.css" />
+    <link rel="stylesheet" href="/assets/styles/app.css" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Post</title>
@@ -45,12 +45,14 @@ $comments = $statement->fetchAll(PDO::FETCH_ASSOC);
     <?php
     endforeach; ?>
     <p class="errormessage"><?= $errormessage; ?></p>
-    <form action="handlecomment.php" method="post">
+
+    <form action="/app/comments/handlecomment.php" method="post">
+        <button type="submit" name="return">Return</button>
         <label for="postid"></label>
         <input hidden type="integer" value="<?= $post['id'] ?>" id="postid" name="postid">
         <label for="description">Write comment</label>
-        <textarea id="description" name="description" placeholder="Write something.." style="height:200px" required></textarea>
-        <button type="submit">Add comment</button>
+        <textarea id="description" name="description" placeholder="Write something.." style="height:200px"></textarea>
+        <button type="submit" name="submit">Add comment</button>
     </form>
 
     <?php foreach ($comments as $comment) :
