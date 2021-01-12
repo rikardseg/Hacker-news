@@ -33,6 +33,7 @@ $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
 <html lang="en">
 
 <head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
   <link rel="stylesheet" href="/assets/styles/app.css" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -40,56 +41,59 @@ $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
 </head>
 
 <body>
-  <?php if (isset($_SESSION['user'])) : ?>
-    <p>Logged in, <?php echo $_SESSION['user']; ?>!</p>
-  <?php endif; ?>
-  <?php if (!isset($_SESSION['user'])) : ?>
-    <p>Logged out!</p>
-  <?php endif; ?>
-  <header>
-    <h1>Hacker News</h1>
-  </header>
-  <ul>
-    <?php if (isset($_SESSION['user'])) :
-    ?><li><a href="newpost.php">Create new post</a></li><?php endif; ?>
-    <li>
-      <div class="sortoptions">Sort posts</div>
-    </li>
-    <?php if (!isset($_SESSION['user'])) :
-    ?><li><a href="login.php">Login</a></li><?php endif; ?>
-    <?php if (isset($_SESSION['user'])) :
-    ?><li><a href="app/users/logout.php">Logout</a><?php endif; ?>
-      </li>
-      <?php if (!isset($_SESSION['user'])) :
-      ?><li><a href="signup.php">Sign up</a></li><?php endif; ?>
-      <?php if (isset($_SESSION['user'])) :
-      ?><li><a href="edituser.php">My Account</a><?php endif; ?>
+  <div class="container">
+    <header>
+      <h1>Hacker News</h1>
+    </header>
+    <div class="row">
+      <ul>
+        <li>
+          <div class="sortoptions">Sort posts</div>
         </li>
-  </ul>
-  <div class="dropdown">
-    <ul>
-      <li><a href="index.php?sort_option=votes">Most popular</a></li>
-      <li><a href="index.php?sort_option=time_stamp">Newest posts</a></li>
-    </ul>
+        <?php if (isset($_SESSION['user'])) :
+        ?><li><a href="newpost.php">Create new post</a></li><?php endif; ?>
+        <?php if (!isset($_SESSION['user'])) :
+        ?><li><a href="login.php">Login</a></li><?php endif; ?>
+        <?php if (isset($_SESSION['user'])) :
+        ?><li><a href="app/users/logout.php">Logout</a><?php endif; ?>
+          </li>
+          <?php if (!isset($_SESSION['user'])) :
+          ?><li><a href="signup.php">Sign up</a></li><?php endif; ?>
+          <?php if (isset($_SESSION['user'])) :
+          ?><li><a href="edituser.php">My Account</a><?php endif; ?>
+            <?php if (isset($_SESSION['user'])) : ?>
+            <li>
+              <span class="session">Logged in, <?php echo $_SESSION['user']; ?>!</span>
+            </li>
+          <?php endif; ?>
+          </li>
+      </ul>
+    </div>
+    <div class="dropdown">
+      <ul>
+        <li><a href="index.php?sort_option=votes">Most popular</a></li>
+        <li><a href="index.php?sort_option=time_stamp">Newest posts</a></li>
+      </ul>
+    </div>
+    <?php foreach ($posts as $post) : ?>
+      <div class="row">
+        <h2><a href="post.php?id=<?= $post['id']; ?>"><?= $post['title']; ?></a></h2>
+      </div>
+      <form id="upvoteButton" action="/app/users/uservote.php" method="POST">
+        <input type="hidden" name="id" value="<?= $post['id']; ?>">
+        <button type="submit">
+          <p style="font-size:7px">&#128314;</p>
+        </button>
+      </form>
+      <?= $post['votes']; ?> votes | Posted by
+      <?= $post['user']; ?>
+      <?= numberOfComments($dbHandler, $post['id']); ?> Comments
+      <?= $post['time_stamp']; ?>
+      <?php if ($userLoggedIn === true and ($_SESSION['user'] === $post['user'])) {
+      ?><p class="editpost"><a href="editpost.php?id=<?= $post['id']; ?>">Edit</a></p>
+    <?php }
+    endforeach; ?>
   </div>
-  <?php foreach ($posts as $post) :
-  ?>
-    <h2><a href="post.php?id=<?= $post['id']; ?>"><?= $post['title']; ?></a></h2>
-    <form class="upvoteButton" action="/app/users/uservote.php" method="POST">
-      <input type="hidden" name="id" value="<?= $post['id']; ?>">
-      <button type="submit">
-        <p style="font-size:8px">&#128314;</p>
-      </button>
-    </form>
-    <?= $post['votes']; ?> votes | Posted by
-    <?= $post['user']; ?>
-    <?= numberOfComments($dbHandler, $post['id']); ?> Comments
-    <?= $post['time_stamp'];
-    if ($userLoggedIn === true and ($_SESSION['user'] === $post['user'])) {
-    ?><p class="editpost"><a href="editpost.php?id=<?= $post['id']; ?>">Edit</a></p>
-  <?php
-    }
-  endforeach; ?>
   <script src="/assets/scripts/app.js"></script>
 </body>
 

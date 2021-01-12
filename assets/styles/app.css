@@ -1,5 +1,10 @@
+* {
+  font-family: "Roboto", sans-serif;
+}
+
 h1 {
   color: brown;
+  padding-top: 4rem;
 }
 
 ul {
@@ -22,8 +27,19 @@ li a {
   text-decoration: none;
 }
 
+.session {
+  font-weight: bold;
+  display: block;
+  color: white;
+  padding: 7px;
+  text-align: center;
+  text-decoration: none;
+  color: rgb(252, 193, 142);
+}
+
 li a:hover {
   background-color: sandybrown;
+  color: white;
 }
 
 li .sortoptions {
@@ -43,33 +59,31 @@ li .sortoptions:hover {
   background-color: rgb(121, 31, 31);
   display: none;
   flex-direction: column;
-  /* font-family: "Dosis", sans-serif; */
-  width: 7vw;
+  width: 8.5vw;
   height: 40%;
-  align-items: left;
-  padding: 0.5rem;
-  margin-bottom: -5rem;
+  padding: 0.475rem;
+  margin-bottom: -5.7rem;
   position: relative;
   top: 0rem;
-  right: -6rem;
+  right: 1rem;
 }
 
 .dropdown.on {
   display: flex;
 }
 
-.editpost {
+/* .editpost {
   display: inline-block;
-}
-
+} */
+/* 
 form {
   display: flex;
   flex-direction: column;
   width: 15%;
-}
+} */
 
-.upvoteButton {
-  display: inline-block;
+#upvoteButton {
+  height: 50%;
 }
 
 .editcomment {
@@ -82,15 +96,20 @@ form {
 
 @media only screen and (max-width: 1024px) {
   .dropdown {
-    margin-bottom: -5rem;
-    width: 10vw;
+    width: 12.4vw;
   }
 }
 
-@media only screen and (max-width: 1024px) {
+@media only screen and (max-width: 768px) {
   .dropdown {
-    margin-bottom: -5rem;
-    width: 10vw;
-    padding: 0.5rem;
+    width: 16.5vw;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .dropdown {
+    width: 39.5vw;
+    top: -2.1rem;
+    right: 4%;
   }
 }
