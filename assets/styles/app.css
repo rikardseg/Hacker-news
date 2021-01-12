@@ -26,6 +26,38 @@ li a:hover {
   background-color: sandybrown;
 }
 
+li .sortoptions {
+  cursor: pointer;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 7px;
+  text-decoration: none;
+}
+
+li .sortoptions:hover {
+  background-color: sandybrown;
+}
+
+.dropdown {
+  background-color: rgb(121, 31, 31);
+  display: none;
+  flex-direction: column;
+  /* font-family: "Dosis", sans-serif; */
+  width: 7vw;
+  height: 40%;
+  align-items: left;
+  padding: 0.5rem;
+  margin-bottom: -5rem;
+  position: relative;
+  top: 0rem;
+  right: -6rem;
+}
+
+.dropdown.on {
+  display: flex;
+}
+
 .editpost {
   display: inline-block;
 }
@@ -46,4 +78,19 @@ form {
 
 .errormessage {
   color: red;
+}
+
+@media only screen and (max-width: 1024px) {
+  .dropdown {
+    margin-bottom: -5rem;
+    width: 10vw;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .dropdown {
+    margin-bottom: -5rem;
+    width: 10vw;
+    padding: 0.5rem;
+  }
 }

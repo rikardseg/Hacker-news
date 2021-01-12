@@ -52,8 +52,9 @@ $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
   <ul>
     <?php if (isset($_SESSION['user'])) :
     ?><li><a href="newpost.php">Create new post</a></li><?php endif; ?>
-    <li><a href="index.php?sort_option=votes">Most popular</a></li>
-    <li><a href="index.php?sort_option=time_stamp">Newest posts</a></li>
+    <li>
+      <div class="sortoptions">Sort posts</div>
+    </li>
     <?php if (!isset($_SESSION['user'])) :
     ?><li><a href="login.php">Login</a></li><?php endif; ?>
     <?php if (isset($_SESSION['user'])) :
@@ -65,6 +66,12 @@ $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
       ?><li><a href="edituser.php">My Account</a><?php endif; ?>
         </li>
   </ul>
+  <div class="dropdown">
+    <ul>
+      <li><a href="index.php?sort_option=votes">Most popular</a></li>
+      <li><a href="index.php?sort_option=time_stamp">Newest posts</a></li>
+    </ul>
+  </div>
   <?php foreach ($posts as $post) :
   ?>
     <h2><a href="post.php?id=<?= $post['id']; ?>"><?= $post['title']; ?></a></h2>
@@ -83,7 +90,7 @@ $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
   <?php
     }
   endforeach; ?>
-  <script src="/assets/scripts/script.js"></script>
+  <script src="/assets/scripts/app.js"></script>
 </body>
 
 </html>
