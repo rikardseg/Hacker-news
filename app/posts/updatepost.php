@@ -36,6 +36,12 @@ if (isset($_POST['submit'])) {
     $statement = $dbHandler->prepare($sql);
     $statement->bindParam(':posts_id', $id, PDO::PARAM_INT);
     $statement->execute();
+
+    // Remove all records in user_vote thats related to the post_id.
+    $sql = "DELETE FROM user_vote WHERE posts_id=:posts_id";
+    $statement = $dbHandler->prepare($sql);
+    $statement->bindParam(':posts_id', $id, PDO::PARAM_INT);
+    $statement->execute();
 } else if (isset($_POST['return'])) {
     header("Location: /../../index.php");
 }

@@ -15,6 +15,10 @@ img {
   color: red;
 }
 
+.errorcontainer {
+  color: red;
+}
+
 .postcontainer {
   margin-top: 4.5rem;
   margin-left: 10rem;
@@ -56,44 +60,40 @@ form {
   color: sandybrown;
 }
 
-@media only screen and (max-width: 1024px) {
-  .container {
-    display: flex;
-    flex-direction: column;
-    width: 20%;
-    right: 25rem;
-    top: 4rem;
-  }
-  .btn {
-    width: 100%;
-  }
-}
-
 @media only screen and (max-width: 768px) {
-  .container {
-    display: flex;
-    flex-direction: column;
-    width: 35%;
-    right: 0rem;
-    top: 1.5rem;
+  .formcontainer {
+    margin-top: 3rem;
+    margin-left: 5rem;
   }
-
-  .btn {
-    width: 77%;
+  .postcontainer {
+    margin-top: 2rem;
+    margin-left: 5rem;
+    width: 21rem;
+    height: auto;
+  }
+  .commentcontainer {
+    margin-top: 4.5rem;
+    margin-left: 5rem;
+    width: 21rem;
+    height: auto;
   }
 }
 
 @media only screen and (max-width: 320px) {
-  .container {
-    display: flex;
-    flex-direction: column;
-    width: 80%;
-    right: 0rem;
-    top: 1.5rem;
+  .formcontainer {
+    margin-top: 2rem;
+    margin-left: 3rem;
   }
-
-  img {
-    max-width: 50%;
-    max-height: 50%;
+  .postcontainer {
+    margin-top: 1rem;
+    margin-left: 1rem;
+    width: 17rem;
+    height: auto;
+  }
+  .commentcontainer {
+    margin-top: 4.5rem;
+    margin-left: 1rem;
+    width: 17rem;
+    height: auto;
   }
 }

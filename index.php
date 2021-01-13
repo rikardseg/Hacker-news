@@ -79,22 +79,24 @@ $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
     </div>
     <?php foreach ($posts as $post) : ?>
       <h2><a href="post.php?id=<?= $post['id']; ?>"><?= $post['title']; ?></a></h2>
-      <form id="upvoteButton" action="/app/users/uservote.php" method="POST">
-        <input type="hidden" name="id" value="<?= $post['id']; ?>">
-        <button type="submit" class="arrowUp">
-          <p style="font-size:9px">&#128314;</p>
-        </button>
-      </form>
-      <p class="belowpost">
-        <?= $post['votes']; ?> votes | Posted by
-        <?= $post['user']; ?> |
-        <?= numberOfComments($dbHandler, $post['id']); ?> Comments |
-        <?= $post['time_stamp']; ?>
-      </p>
-      <?php if ($userLoggedIn === true and ($_SESSION['user'] === $post['user'])) {
-      ?><span class="editpost"><a href="editpost.php?id=<?= $post['id']; ?>">Edit post</a></span>
-    <?php }
-    endforeach; ?>
+      <div class="banana">
+        <form class="upvoteButton" action="/app/users/uservote.php" method="POST">
+          <input type="hidden" name="id" value="<?= $post['id']; ?>">
+          <button type="submit" class="arrowUp">
+            &#128314;
+          </button>
+        </form>
+        <p class="belowpost">
+          <?= $post['votes']; ?> votes | Posted by
+          <?= $post['user']; ?> |
+          <?= numberOfComments($dbHandler, $post['id']); ?> Comments |
+          <?= $post['time_stamp']; ?>
+        </p>
+        <?php if ($userLoggedIn === true and ($_SESSION['user'] === $post['user'])) : ?>
+          <span class="editpost"><a href="editpost.php?id=<?= $post['id']; ?>"> Edit</a></span>
+        <?php endif; ?>
+      </div>
+    <?php endforeach; ?>
   </div>
   <script src="/assets/scripts/app.js"></script>
 </body>

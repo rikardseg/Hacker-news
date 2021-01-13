@@ -98,6 +98,7 @@ li .sortoptions:hover {
 
 .belowpost {
   display: inline-block;
+  margin: 0;
 }
 
 .editpost a {
@@ -105,6 +106,7 @@ li .sortoptions:hover {
   display: inline-block;
   color: brown;
   text-decoration: none;
+  margin-left: 5px;
 }
 
 .editcomment a {
@@ -121,16 +123,21 @@ li .sortoptions:hover {
   text-decoration: none;
 }
 
-#upvoteButton {
+/* #upvoteButton {
   height: 3vw;
   display: inline-block;
   top: -0.5rem;
   position: relative;
-}
+} */
 
-.arrowUp p {
-  position: relative;
-  top: 0.5rem;
+.arrowUp {
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 32px;
+  width: 32px;
+  margin-right: 4px;
 }
 
 .editcomment {
@@ -139,6 +146,12 @@ li .sortoptions:hover {
 
 .errormessage {
   color: red;
+}
+
+.banana {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
 }
 
 @media only screen and (max-width: 1024px) {
@@ -154,9 +167,18 @@ li .sortoptions:hover {
 }
 
 @media only screen and (max-width: 320px) {
+  h1 {
+    color: brown;
+    padding-top: 1rem;
+  }
+
   .dropdown {
     width: 39.5vw;
     top: -2.1rem;
     right: 4%;
+  }
+  #upvoteButton {
+    height: 1vw;
+    top: -1rem;
   }
 }

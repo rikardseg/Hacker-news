@@ -40,11 +40,10 @@ endforeach;
     <title>My account</title>
 </head>
 
-<p><?= $errormessage; ?></p>
-
 <body>
     <div class="formcontainer">
         <h1>My account</h1>
+        <p class="errorcontainer"><?= $errormessage; ?></p>
         <form action="/app/users/handleuser.php" method="post" enctype="multipart/form-data">
             <input type="hidden" name="editmode" value="edit">
             <label for="username">Username</label>
