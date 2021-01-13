@@ -31,7 +31,7 @@ $comments = $statement->fetchAll(PDO::FETCH_ASSOC);
 <html lang="en">
 
 <head>
-    <link rel="stylesheet" href="/assets/styles/app.css" />
+    <link rel="stylesheet" href="/assets/styles/form.css" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Post</title>
@@ -41,7 +41,7 @@ $comments = $statement->fetchAll(PDO::FETCH_ASSOC);
     <?php foreach ($postRow as $post) : ?>
         <h2><?= $post['title'] ?></h2>
         <p><?= $post['description'] ?></p>
-        <a href="<?= $post['link'] ?>">This is link</a>
+        <a href="<?= $post['link'] ?>"><?= $post['link']; ?></a>
     <?php
     endforeach; ?>
     <p class="errormessage"><?= $errormessage; ?></p>
@@ -59,7 +59,7 @@ $comments = $statement->fetchAll(PDO::FETCH_ASSOC);
     ?><div>
             <em><?= $comment['user']; ?> <?= $comment['time_stamp']; ?></em>
             <?php if ($_SESSION['user'] === $comment['user']) {
-            ?><p class="editcomment"><a href="comment.php?id=<?= $comment['id']; ?>">Edit</a></p>
+            ?><p class="editcomment"><a href="comment.php?id=<?= $comment['id']; ?>">Edit comment</a></p>
             <?php
             } ?><p><?= $comment['description'];
                 endforeach; ?>

@@ -2,10 +2,17 @@
   font-family: "Roboto", sans-serif;
 }
 
-form {
+h1 {
+  color: brown;
+}
+
+.container {
   display: flex;
   flex-direction: column;
-  width: 15%;
+  width: 14%;
+  right: 30rem;
+  position: relative;
+  top: 4rem;
 }
 
 img {
@@ -13,11 +20,61 @@ img {
   max-height: 50%;
 }
 
-@media only screen and (max-width: 320px) {
-  form {
+.errormessage {
+  color: red;
+}
+
+/* .container {
+  top: 3rem;
+  right: 30rem;
+} */
+
+.btn {
+  background-color: brown;
+  color: white;
+  width: 107%;
+  right: 0.1rem;
+  position: relative;
+}
+
+.btn:hover {
+  color: sandybrown;
+}
+
+@media only screen and (max-width: 1024px) {
+  .container {
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 20%;
+    right: 25rem;
+    top: 4rem;
+  }
+  .btn {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+    width: 35%;
+    right: 0rem;
+    top: 1.5rem;
+  }
+
+  .btn {
+    width: 77%;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    right: 0rem;
+    top: 1.5rem;
   }
 
   img {

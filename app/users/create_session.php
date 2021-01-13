@@ -8,16 +8,19 @@ if (isset($_POST['username'], $_POST['password'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
 } else {
-    echo "Invalid declaration in form<br>";
+    $_SESSION['error_message'] = "Invalid declaration in form.";
+    header("Location: /../../login.php");
 }
 
 // Check if username and password is entered.
 if ($username === '') {
-    echo  'The username field is missing.<br>';
+    $_SESSION['error_message'] = "The username field is missing.";
+    header("Location: /../../login.php");
 }
 
 if ($password === '') {
-    echo  'The password field is missing.<br>';
+    $_SESSION['error_message'] = "The password field is missing.";
+    header("Location: /../../login.php");
 }
 
 // Check if user exists in table users.
@@ -40,10 +43,9 @@ $avatar = $statement->fetchColumn();
 if (password_verify($password, $password_db)) {
     $_SESSION['user'] = $username;
     $_SESSION['avatar'] = $avatar;
-    echo 'Password is valid!';
+    // Redirecting to main page.
+    header("Location:/../../index.php");
 } else {
-    echo 'Invalid password.';
+    $_SESSION['error_message'] = "Invalid password.";
+    header("Location: /../../login.php");
 }
-
-// Redirecting to main page.
-header("Location:/../../index.php");

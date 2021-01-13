@@ -9,15 +9,18 @@ if (isset($_POST['title'], $_POST['description'], $_POST['link'])) {
     $description = trim(filter_var($_POST['description'], FILTER_SANITIZE_SPECIAL_CHARS));
     $link = trim(filter_var($_POST['link'], FILTER_SANITIZE_URL));
 } else {
-    echo "Invalid declaration in form<br>";
+    $_SESSION['error_message'] = "Invalid declaration in form.";
+    header("Location: /../../newpost.php");
 }
 
 if ($title === '') {
-    echo  'The title field is missing.<br>';
+    $_SESSION['error_message'] = "The title field is missing.";
+    header("Location: /../../newpost.php");
 }
 
 if ($description === '') {
-    echo  'The description field is missing.<br>';
+    $_SESSION['error_message'] = "The description field is missing.";
+    header("Location: /../../newpost.php");
 }
 
 $id = NULL;

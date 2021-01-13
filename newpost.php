@@ -1,6 +1,17 @@
 <?php
 
-require __DIR__ . '/app/check_session.php' ?>
+declare(strict_types=1);
+
+require __DIR__ . '/app/check_session.php';
+
+if (!isset($_SESSION['error_message'])) {
+    $errormessage = "";
+} else {
+    $errormessage = $_SESSION['error_message'];
+    unset($_SESSION['error_message']);
+}
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -13,6 +24,7 @@ require __DIR__ . '/app/check_session.php' ?>
 </head>
 
 <body>
+    <p class="errormessage"><?= $errormessage; ?></p>
     <main>
         <h1>Create new post</h1>
         <form action="/app/posts/handlepost.php" method="post">

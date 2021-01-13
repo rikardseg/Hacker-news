@@ -6,7 +6,8 @@ if (isset($_POST['postid'], $_POST['description'])) {
     $postId = trim(filter_var($_POST['postid'], FILTER_SANITIZE_NUMBER_INT));
     $description = trim(filter_var($_POST['description'], FILTER_SANITIZE_SPECIAL_CHARS));
 } else {
-    echo "Invalid declaration in form<br>";
+    $_SESSION['error_message'] = "Invalid declaration in form.";
+    header("Location: /../../post.php?id=" . $postId);
 }
 
 if (isset($_POST['return'])) {
@@ -43,4 +44,3 @@ if (isset($_POST['return'])) {
 
     header("Location: /../../post.php?id=" . $postId);
 }
-// $redirect;

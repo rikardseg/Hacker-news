@@ -40,7 +40,7 @@ endforeach;
         <input hidden type="integer" value="<?= $postId; ?>" id="postid" name="postid">
         <label for="description">Comment</label>
         <textarea id="description" name="description" placeholder="Write something.." style="height:200px" required><?= $description; ?></textarea>
-        <button type="submit" name="submit">Edit comment</button>
+        <button type="submit" name="submit">Save comment</button>
     </form>
     <script src="script.js"></script>
 </body>

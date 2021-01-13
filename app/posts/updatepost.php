@@ -8,7 +8,8 @@ if (isset($_POST['postid'], $_POST['title'], $_POST['description'], $_POST['link
     $description = trim(filter_var($_POST['description'], FILTER_SANITIZE_SPECIAL_CHARS));
     $link = trim(filter_var($_POST['link'], FILTER_SANITIZE_URL));
 } else {
-    echo "error";
+    $_SESSION['error_message'] = "Invalid declaration in form.";
+    header("Location: /../../editpost.php");
 }
 
 if (isset($_POST['submit'])) {

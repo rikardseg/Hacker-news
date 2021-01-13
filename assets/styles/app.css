@@ -7,6 +7,20 @@ h1 {
   padding-top: 4rem;
 }
 
+h2 {
+  padding-top: 1%;
+}
+
+h2 a {
+  font-size: 1.6rem;
+  text-decoration: none;
+  color: brown;
+}
+
+h2 a:hover {
+  color: brown;
+}
+
 ul {
   list-style-type: none;
   margin: 0;
@@ -55,6 +69,10 @@ li .sortoptions:hover {
   background-color: sandybrown;
 }
 
+.container-md {
+  background-color: rgb(241, 216, 194);
+}
+
 .dropdown {
   background-color: rgb(121, 31, 31);
   display: none;
@@ -66,15 +84,23 @@ li .sortoptions:hover {
   position: relative;
   top: 0rem;
   right: 1rem;
+  z-index: 1;
 }
 
 .dropdown.on {
   display: flex;
 }
 
-/* .editpost {
+.belowpost {
   display: inline-block;
-} */
+}
+
+.editpost a {
+  font-weight: bold;
+  display: inline-block;
+  color: brown;
+  text-decoration: none;
+}
 /* 
 form {
   display: flex;
@@ -83,7 +109,15 @@ form {
 } */
 
 #upvoteButton {
-  height: 50%;
+  height: 3vw;
+  display: inline-block;
+  top: -0.5rem;
+  position: relative;
+}
+
+.arrowUp p {
+  position: relative;
+  top: 0.5rem;
 }
 
 .editcomment {
