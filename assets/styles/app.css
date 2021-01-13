@@ -21,6 +21,11 @@ h2 a:hover {
   color: brown;
 }
 
+.postcontainer h2 {
+  color: brown;
+  padding-bottom: 1rem;
+}
+
 ul {
   list-style-type: none;
   margin: 0;
@@ -101,12 +106,20 @@ li .sortoptions:hover {
   color: brown;
   text-decoration: none;
 }
-/* 
-form {
-  display: flex;
-  flex-direction: column;
-  width: 15%;
-} */
+
+.editcomment a {
+  font-weight: bold;
+  display: inline-block;
+  color: brown;
+  text-decoration: none;
+}
+
+.linkpost a {
+  font-weight: bold;
+  display: inline-block;
+  color: brown;
+  text-decoration: none;
+}
 
 #upvoteButton {
   height: 3vw;

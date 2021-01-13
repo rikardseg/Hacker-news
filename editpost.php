@@ -20,6 +20,11 @@ $statement->execute();
 
 $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
 
+if (!$posts) {
+    header("location: /");
+    exit;
+}
+
 foreach ($posts as $post) :
     $title = $post['title'];
     $description = $post['description'];
@@ -32,6 +37,7 @@ endforeach;
 <html lang="en">
 
 <head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <link rel="stylesheet" href="/assets/styles/form.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -39,19 +45,21 @@ endforeach;
 </head>
 
 <body>
-    <p class="errormessage"><?= $errormessage; ?></p>
-    <form action="/app/posts/updatepost.php" method="post">
-        <button type="submit" name="return">Return</button>
-        <button type="delete" name="delete" onclick="if (!confirm('Are you sure?')) { return false }">Delete post</button>
-        <input hidden type="integer" value="<?= $id; ?>" id="postid" name="postid">
-        <label for="title">Title</label>
-        <input type="text" name="title" id="title" value="<?= $title; ?>" required />
-        <label for="description">Description</label>
-        <textarea id="description" name="description" placeholder="Write something.." style="height:200px" required><?= $description; ?></textarea>
-        <label for="Link">Link</label>
-        <input type="url" name="link" id="link" value="<?= $link; ?>">
-        <button type="submit" name="submit">Save post</button>
-    </form>
+    <div class="formcontainer">
+        <p class="errormessage"><?= $errormessage; ?></p>
+        <form action="/app/posts/updatepost.php" method="post">
+            <button type="submit" name="return" class="btn">Return</button>
+            <button type="delete" name="delete" class="btn" onclick="if (!confirm('Are you sure?')) { return false }">Delete post</button>
+            <input hidden type="integer" value="<?= $id; ?>" id="postid" name="postid">
+            <label for="title">Title</label>
+            <input type="text" name="title" id="title" value="<?= $title; ?>" required />
+            <label for="description">Description</label>
+            <textarea id="description" name="description" placeholder="Write something.." style="height:200px" required><?= $description; ?></textarea>
+            <label for="Link">Link</label>
+            <input type="url" name="link" id="link" value="<?= $link; ?>">
+            <button type="submit" name="submit" class="btn">Save post</button>
+        </form>
+    </div>
 </body>
 
 </html>

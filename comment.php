@@ -13,6 +13,11 @@ $statement->execute();
 
 $comments = $statement->fetchAll(PDO::FETCH_ASSOC);
 
+if (!$comments) {
+    header("location: /");
+    exit;
+}
+
 foreach ($comments as $comment) :
     $postId = $comment['posts_id'];
     $commentId = $comment['id'];
@@ -26,6 +31,7 @@ endforeach;
 <html lang="en">
 
 <head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <link rel="stylesheet" href="/assets/styles/form.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -33,15 +39,17 @@ endforeach;
 </head>
 
 <body>
-    <form action="/app/comments/editcomment.php" method="post">
-        <button type="submit" name="return">Return</button>
-        <button type="submit" class="delete" name="delete" onclick="if (!confirm('Are you sure?')) { return false }">Delete comment</button>
-        <input hidden type="integer" value="<?= $commentId; ?>" id="commentid" name="commentid">
-        <input hidden type="integer" value="<?= $postId; ?>" id="postid" name="postid">
-        <label for="description">Comment</label>
-        <textarea id="description" name="description" placeholder="Write something.." style="height:200px" required><?= $description; ?></textarea>
-        <button type="submit" name="submit">Save comment</button>
-    </form>
+    <div class="formcontainer">
+        <form action="/app/comments/editcomment.php" method="post">
+            <button type="submit" name="return" class="btn">Back to post</button>
+            <button type="submit" class="btn" name="delete" onclick="if (!confirm('Are you sure?')) { return false }">Delete comment</button>
+            <input hidden type="integer" value="<?= $commentId; ?>" id="commentid" name="commentid">
+            <input hidden type="integer" value="<?= $postId; ?>" id="postid" name="postid">
+            <label class="comment" for="description">Comment</label>
+            <textarea id="description" name="description" placeholder="Write something.." style="height:200px" required><?= $description; ?></textarea>
+            <button type="submit" name="submit" class="btn">Save comment</button>
+        </form>
+    </div>
     <script src="script.js"></script>
 </body>
 

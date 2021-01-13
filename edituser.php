@@ -33,6 +33,7 @@ endforeach;
 <html lang="en">
 
 <head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <link rel="stylesheet" href="/assets/styles/form.css" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -42,7 +43,7 @@ endforeach;
 <p><?= $errormessage; ?></p>
 
 <body>
-    <main>
+    <div class="formcontainer">
         <h1>My account</h1>
         <form action="/app/users/handleuser.php" method="post" enctype="multipart/form-data">
             <input type="hidden" name="editmode" value="edit">
@@ -59,9 +60,9 @@ endforeach;
             <input type="password" name="password" id="password" />
             <label for="confirm_password">Confirm new password</label>
             <input type="password" name="confirm_password" id="confirm_password" />
-            <button type="submit">Save changes</button>
+            <button type="submit" class="btn">Save changes</button>
         </form>
-    </main>
+    </div>
 
 
 </body>

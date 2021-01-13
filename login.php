@@ -22,30 +22,16 @@ if (!isset($_SESSION['error_message'])) {
 </head>
 
 <body>
-  <div class="container">
-    <main>
-      <h1>Login</h1>
-      <p class="errormessage"><?= $errormessage; ?></p>
-      <form action="/app/users/create_session.php" method="post">
-        <div class="row mb-1">
-          <div class="col">
-            <label for="username">Username</label>
-            <input type="text" name="username" id="username" required />
-          </div>
-        </div>
-        <div class="row mb-4">
-          <div class="col">
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password" required />
-          </div>
-        </div>
-        <div class="row mb-1">
-          <div class="col">
-            <button type="submit" class="btn">Login</button>
-          </div>
-        </div>
-      </form>
-    </main>
+  <div class="formcontainer">
+    <h1>Login</h1>
+    <p class="errormessage"><?= $errormessage; ?></p>
+    <form action="/app/users/create_session.php" method="post">
+      <label for="username">Username</label>
+      <input type="text" name="username" id="username" required />
+      <label for="password">Password</label>
+      <input type="password" name="password" id="password" required />
+      <button type="submit" class="btn">Login</button>
+    </form>
   </div>
 </body>
 

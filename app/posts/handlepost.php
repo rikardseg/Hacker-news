@@ -11,16 +11,19 @@ if (isset($_POST['title'], $_POST['description'], $_POST['link'])) {
 } else {
     $_SESSION['error_message'] = "Invalid declaration in form.";
     header("Location: /../../newpost.php");
+    exit;
 }
 
 if ($title === '') {
     $_SESSION['error_message'] = "The title field is missing.";
     header("Location: /../../newpost.php");
+    exit;
 }
 
 if ($description === '') {
     $_SESSION['error_message'] = "The description field is missing.";
     header("Location: /../../newpost.php");
+    exit;
 }
 
 $id = NULL;

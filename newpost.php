@@ -17,6 +17,7 @@ if (!isset($_SESSION['error_message'])) {
 <html lang="en">
 
 <head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <link rel="stylesheet" href="/assets/styles/form.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,9 +25,9 @@ if (!isset($_SESSION['error_message'])) {
 </head>
 
 <body>
-    <p class="errormessage"><?= $errormessage; ?></p>
-    <main>
-        <h1>Create new post</h1>
+    <div class="formcontainer">
+        <h1>New post</h1>
+        <p class="errormessage"><?= $errormessage; ?></p>
         <form action="/app/posts/handlepost.php" method="post">
             <label for="title">Title</label>
             <input type="text" name="title" id="title" required />
@@ -34,9 +35,9 @@ if (!isset($_SESSION['error_message'])) {
             <textarea id="description" name="description" placeholder="Write something.." style="height:200px" required></textarea>
             <label for="Link">Link</label>
             <input type="url" name="link" id="link">
-            <button type="submit">Create</button>
+            <button type="submit" class="btn">Create</button>
         </form>
-    </main>
+    </div>
 
 </body>
 

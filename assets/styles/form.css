@@ -6,35 +6,50 @@ h1 {
   color: brown;
 }
 
-.container {
-  display: flex;
-  flex-direction: column;
-  width: 14%;
-  right: 30rem;
-  position: relative;
-  top: 4rem;
-}
-
 img {
-  max-width: 50%;
-  max-height: 50%;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 .errormessage {
   color: red;
 }
 
-/* .container {
-  top: 3rem;
-  right: 30rem;
-} */
+.postcontainer {
+  margin-top: 4.5rem;
+  margin-left: 10rem;
+  width: 20rem;
+  height: auto;
+}
+
+.commentcontainer {
+  margin-top: 4.5rem;
+  margin-left: 10rem;
+  width: 22rem;
+  height: auto;
+}
+
+.comment {
+  color: brown;
+  font-weight: bold;
+}
+
+form * {
+  width: 100%;
+}
+
+form {
+  width: 200px;
+}
+
+.formcontainer {
+  margin-top: 4.5rem;
+  margin-left: 10rem;
+}
 
 .btn {
   background-color: brown;
   color: white;
-  width: 107%;
-  right: 0.1rem;
-  position: relative;
 }
 
 .btn:hover {

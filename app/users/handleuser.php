@@ -14,27 +14,52 @@ if (isset($_POST['username'], $_POST['email'], $_POST['biography'], $_FILES['ava
     $editmode = $_POST['editmode'];
 } else {
     $_SESSION['error_message'] = "Invalid declaration in form";
+    if ($editmode === 'edit') {
+        header("Location: /../../edituser.php");
+        exit;
+    }
     header("Location: /../../signup.php");
+    exit;
 }
 
 if ($username === '') {
     $_SESSION['error_message'] = "The username field is missing";
+    if ($editmode === 'edit') {
+        header("Location: /../../edituser.php");
+        exit;
+    }
     header("Location: /../../signup.php");
+    exit;
 }
 
 if ($email === '') {
     $_SESSION['error_message'] = "The email field is missing.";
+    if ($editmode === 'edit') {
+        header("Location: /../../edituser.php");
+        exit;
+    }
     header("Location: /../../signup.php");
+    exit;
 }
 
 if ($password === '') {
     $_SESSION['error_message'] = "The password field is missing.";
+    if ($editmode === 'edit') {
+        header("Location: /../../edituser.php");
+        exit;
+    }
     header("Location: /../../signup.php");
+    exit;
 }
 
 if ($password !== $confirmPassword) {
     $_SESSION['error_message'] = "Passwords does not match";
+    if ($editmode === 'edit') {
+        header("Location: /../../edituser.php");
+        exit;
+    }
     header("Location: /../../signup.php");
+    exit;
 }
 
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -59,6 +84,7 @@ if ($editmode === "new") {
     if ($userDb === $username) {
         $_SESSION['error_message'] = "User already exist! Try again and use another username";
         header("Location: /../../signup.php");
+        exit;
     }
     //Insert one row.
     $sql = "INSERT INTO users (user, e_mail, biography, avatar_name, password_) VALUES (:user, :e_mail, :biography, :avatar_name, :password_)";
