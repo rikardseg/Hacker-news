@@ -19,11 +19,13 @@ if (isset($_POST['return'])) {
         // Session not initiated => User is redirected to post page
         $_SESSION['error_message'] = "Please login to comment.";
         header("Location: /../../post.php?id=" . $postId);
+        exit;
     }
 
     if ($description === '') {
         $_SESSION['error_message'] = "The comment field is missing.";
         header("Location: /../../post.php?id=" . $postId);
+        exit;
     }
 
     $id = NULL;

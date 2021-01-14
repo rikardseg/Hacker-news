@@ -31,7 +31,7 @@ $statement->execute();
 
 $password_db = $statement->fetchColumn();
 
-// Find way to check if user does not exist.
+// Find way to check if avatar exists.
 $sql = "SELECT avatar_name FROM users WHERE user=:user";
 $statement = $dbHandler->prepare($sql);
 $statement->bindParam(':user', $username);
@@ -39,7 +39,7 @@ $statement->execute();
 
 $avatar = $statement->fetchColumn();
 
-// Check if password is correct. 
+// Check if password is correct.
 if (password_verify($password, $password_db)) {
     $_SESSION['user'] = $username;
     $_SESSION['avatar'] = $avatar;

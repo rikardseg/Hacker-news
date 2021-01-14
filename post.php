@@ -48,10 +48,10 @@ $comments = $statement->fetchAll(PDO::FETCH_ASSOC);
         <?php
         endforeach; ?>
     </div>
-    <p class="errormessage"><?= $errormessage; ?></p>
     <div class="formcontainer">
         <form action="/app/comments/handlecomment.php" method="post">
             <button type="submit" name="return" class="btn">Back to mainpage</button>
+            <p class="errormessage"><?= $errormessage; ?></p>
             <label for="postid"></label>
             <input hidden type="integer" value="<?= $post['id'] ?>" id="postid" name="postid">
             <label for="description">Write comment</label>
