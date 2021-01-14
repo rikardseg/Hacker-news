@@ -62,12 +62,12 @@ $comments = $statement->fetchAll(PDO::FETCH_ASSOC);
         <?php foreach ($comments as $comment) : ?>
             <div>
                 <em><?= $comment['user']; ?> <?= $comment['time_stamp']; ?></em>
-                <?php if (isset($_SESSION['user']) && $_SESSION['user'] === $comment['user']) {
-                ?><p class="editcomment"><a href="comment.php?id=<?= $comment['id']; ?>">Edit comment</a></p>
-                <?php } ?><p><?= $comment['description']; ?>
-                <?php endforeach; ?>
-                </p>
+                <?php if (isset($_SESSION['user']) && $_SESSION['user'] === $comment['user']) : ?>
+                    <p class="editcomment"><a href="comment.php?id=<?= $comment['id']; ?>">Edit comment</a></p>
+                <?php endif; ?>
+                <p><?= $comment['description']; ?></p>
             </div>
+        <?php endforeach; ?>
     </div>
 </body>
 
