@@ -45,8 +45,7 @@ $comments = $statement->fetchAll(PDO::FETCH_ASSOC);
             <h2><?= $post['title'] ?></h2>
             <p><?= $post['description'] ?></p>
             <span class="linkpost"><a href="<?= $post['link'] ?>"><?= $post['link']; ?></a></span>
-        <?php
-        endforeach; ?>
+        <?php endforeach; ?>
     </div>
     <div class="formcontainer">
         <form action="/app/comments/handlecomment.php" method="post">
@@ -60,14 +59,13 @@ $comments = $statement->fetchAll(PDO::FETCH_ASSOC);
         </form>
     </div>
     <div class="commentcontainer">
-        <?php foreach ($comments as $comment) :
-        ?><div>
+        <?php foreach ($comments as $comment) : ?>
+            <div>
                 <em><?= $comment['user']; ?> <?= $comment['time_stamp']; ?></em>
                 <?php if (isset($_SESSION['user']) && $_SESSION['user'] === $comment['user']) {
                 ?><p class="editcomment"><a href="comment.php?id=<?= $comment['id']; ?>">Edit comment</a></p>
-                <?php
-                } ?><p><?= $comment['description'];
-                    endforeach; ?>
+                <?php } ?><p><?= $comment['description']; ?>
+                <?php endforeach; ?>
                 </p>
             </div>
     </div>

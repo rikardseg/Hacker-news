@@ -13,6 +13,8 @@ function numberOfComments($dbHandler, $postsId): string
     return $comments;
 }
 
+
+
 function addVote($dbHandler, $user, $postsId): bool
 {
     // Add record in user_vote to mark that user has voted
