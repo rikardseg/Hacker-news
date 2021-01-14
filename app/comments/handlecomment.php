@@ -13,7 +13,6 @@ if (isset($_POST['postid'], $_POST['description'])) {
 if (isset($_POST['return'])) {
     header("Location: /../../index.php");
 } else {
-
     // Check if session variable is set and exist
     if (!isset($_SESSION['user'])) {
         // Session not initiated => User is redirected to post page
@@ -28,7 +27,7 @@ if (isset($_POST['return'])) {
         exit;
     }
 
-    $id = NULL;
+    $id = null;
     $user = $_SESSION['user'];
     $time_stamp = date("Y-m-d H:i:s");
 

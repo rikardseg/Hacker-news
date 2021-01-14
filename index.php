@@ -50,23 +50,24 @@ $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
                 <li>
                     <div class="sortoptions">Sort posts</div>
                 </li>
-                <?php if (isset($_SESSION['user'])) :
-                ?><li><a href="newpost.php">Create new post</a></li><?php endif; ?>
-                <?php if (!isset($_SESSION['user'])) :
-                ?><li><a href="login.php">Login</a></li><?php endif; ?>
-                <?php if (isset($_SESSION['user'])) :
-                ?><li><a href="app/users/logout.php">Logout</a><?php endif; ?>
-                    </li>
-                    <?php if (!isset($_SESSION['user'])) :
-                    ?><li><a href="signup.php">Sign up</a></li><?php endif; ?>
-                    <?php if (isset($_SESSION['user'])) :
-                    ?><li><a href="edituser.php">My Account</a><?php endif; ?>
-                        <?php if (isset($_SESSION['user'])) : ?>
-                        <li>
-                            <span class="session">Logged in, <?php echo $_SESSION['user']; ?>!</span>
-                        </li>
-                    <?php endif; ?>
-                    </li>
+                <?php if (isset($_SESSION['user'])) : ?>
+                    <li><a href="newpost.php">Create new post</a></li>
+                <?php endif; ?>
+                <?php if (!isset($_SESSION['user'])) : ?>
+                    <li><a href="login.php">Login</a></li>
+                <?php endif; ?>
+                <?php if (isset($_SESSION['user'])) : ?>
+                    <li><a href="app/users/logout.php">Logout</a></li>
+                <?php endif; ?>
+                <?php if (!isset($_SESSION['user'])) : ?>
+                    <li><a href="signup.php">Sign up</a></li>
+                <?php endif; ?>
+                <?php if (isset($_SESSION['user'])) : ?>
+                    <li><a href="edituser.php">My Account</a></li>
+                <?php endif; ?>
+                <?php if (isset($_SESSION['user'])) : ?>
+                    <li><span class="session">Logged in, <?php echo $_SESSION['user']; ?>!</span></li>
+                <?php endif; ?>
             </ul>
         </div>
     </div>

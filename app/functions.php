@@ -13,8 +13,6 @@ function numberOfComments($dbHandler, $postsId): string
     return $comments;
 }
 
-
-
 function addVote($dbHandler, $user, $postsId): bool
 {
     // Add record in user_vote to mark that user has voted
@@ -26,7 +24,7 @@ function addVote($dbHandler, $user, $postsId): bool
     $statement->bindParam(':time_stamp', $time, PDO::PARAM_STR);
     $statement->execute();
 
-    return TRUE;
+    return true;
 }
 
 function removeVote($dbHandler, $user, $postsId): bool
@@ -38,7 +36,7 @@ function removeVote($dbHandler, $user, $postsId): bool
     $statement->bindParam(':posts_id', $postsId, PDO::PARAM_INT);
     $statement->execute();
 
-    return TRUE;
+    return true;
 }
 
 function userHasVoted($dbHandler, $user, $postsId): bool
@@ -53,9 +51,9 @@ function userHasVoted($dbHandler, $user, $postsId): bool
     $rowExist = $statement->fetchColumn();  // Return number of rows/records in table
 
     if ($rowExist) {
-        return TRUE;
+        return true;
     } else {
-        return FALSE;
+        return false;
     }
 }
 
@@ -66,7 +64,7 @@ function updateVotes($dbHandler, $user, $postsId): bool
     // Check if user already has voted on the post.
     $userHasVoted = userHasVoted($dbHandler, $user, $postsId);
 
-    if ($userHasVoted === TRUE) {     // If user already has voted ==> remove that vote on post
+    if ($userHasVoted === true) {     // If user already has voted ==> remove that vote on post
         $voteChange = -1;
     } else {                    // If user has not voted ==> add vote on post
         $voteChange = +1;
@@ -93,5 +91,5 @@ function updateVotes($dbHandler, $user, $postsId): bool
     } else if ($voteChange === -1) {
         removeVote($dbHandler, $user, $postsId);
     }
-    return TRUE;
+    return true;
 }

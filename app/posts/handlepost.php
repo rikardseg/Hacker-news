@@ -26,7 +26,7 @@ if ($description === '') {
     exit;
 }
 
-$id = NULL;
+$id = null;
 $user = $_SESSION['user'];
 $votes = 0;
 $time_stamp = date("Y-m-d H:i:s");

@@ -11,7 +11,6 @@ if (isset($_POST['commentid'], $_POST['postid'], $_POST['description'])) {
 }
 
 if (isset($_POST['submit'])) {
-
     $timeStamp = date("Y-m-d H:i:s");
 
     $sql = "UPDATE comments SET description=:description, time_stamp=:time_stamp WHERE id=:id";
@@ -22,7 +21,6 @@ if (isset($_POST['submit'])) {
     $statement->bindParam(':time_stamp', $timeStamp, PDO::PARAM_STR);
     $statement->execute();
 } else if (isset($_POST['delete'])) {
-
     $sql = "DELETE FROM comments WHERE id=:id";
     $statement = $dbHandler->prepare($sql);
     $statement->bindParam(':id', $commentId, PDO::PARAM_INT);

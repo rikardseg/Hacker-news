@@ -26,7 +26,6 @@ if (isset($_POST['submit'])) {
 
     $statement->execute();
 } else if (isset($_POST['delete'])) {
-
     $sql = "DELETE FROM posts WHERE id=:id";
     $statement = $dbHandler->prepare($sql);
     $statement->bindParam(':id', $id, PDO::PARAM_INT);
