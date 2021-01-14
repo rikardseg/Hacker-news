@@ -13,6 +13,7 @@ img {
 
 .errormessage {
   color: red;
+  padding-top: 1rem;
 }
 
 .errorcontainer {
