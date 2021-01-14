@@ -32,4 +32,4 @@ Load the application via localhost in your command line.
 
 # Testers
 
-Simon Lindstedt
+Simon Lindstedt, Jonathan Larsson
