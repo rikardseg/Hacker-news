@@ -24,7 +24,6 @@ foreach ($users as $user) :
     $email = $user['e_mail'];
     $biography = $user['biography'];
     $avatar = $user['avatar_name'];
-
 endforeach;
 
 ?>
