@@ -91,7 +91,6 @@ $replies = $statement->fetchAll(PDO::FETCH_ASSOC)
                 <div>
                     <em><?= $reply['user']; ?></em>
                     <?php if (isset($_SESSION['user']) && $_SESSION['user'] === $reply['user']) : ?>
-                        <!-- <p class="editcomment"><a href="comment.php?id=<?= $reply['id']; ?>">Edit comment</a></p> -->
                     <?php endif; ?>
                     <p><?= $reply['description']; ?></p>
                 </div>

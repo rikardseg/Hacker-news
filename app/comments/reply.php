@@ -18,14 +18,7 @@ if (isset($_POST['postid'], $_POST['description'])) {
     $description = trim(filter_var($_POST['description'], FILTER_SANITIZE_SPECIAL_CHARS));
     // ADD ID? (Why tho?)
     $id = trim(filter_var($_POST['id'], FILTER_SANITIZE_NUMBER_INT));
-}
 
-if (isset($_POST['return'])) {
-    header("Location: /../../index.php");
-} else {
-
-    //How to get around this?
-    // $id = null;
     $user = $_SESSION['user'];
     $id = $_SESSION['id'];
 
@@ -42,3 +35,63 @@ if (isset($_POST['return'])) {
 
     header("Location: /../../post.php?id=" . $postId);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+// if (isset($_POST['id'], $_POST['reply'])) {
+//     $reply = filter_var(trim($_POST['reply']), FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+//     $commentId = trim(filter_var($_POST['id'], FILTER_SANITIZE_STRING));
+//     $valid = true;
+
+//     // Insert replies and match with user_id, comment_id
+//     $statement = $pdo->prepare('INSERT INTO replies (posts_id, id, user, description)
+//     VALUES (:posts_id, :id, :user, :description)');
+//     if (!$statement) {
+//         $valid = false;
+//         $errors = $pdo->errorInfo();
+//         $response = [
+//             'valid' => $valid,
+//             'errors' => $errors
+//         ];
+//         echo json_encode($response);
+//         exit;
+//     }
+
+//     $statement->execute([
+//         ':user_id' => $_SESSION['user']['id'],
+//         ':comment_id' => $commentId,
+//         ':reply' => $reply
+//     ]);
+
+//     // Get replies
+//     $statement = $pdo->prepare('SELECT * FROM replies WHERE id = :id');
+//     if (!$statement) {
+//         $valid = false;
+//         $errors = $pdo->errorInfo();
+//         $response = [
+//             'valid' => $valid,
+//             'errors' => $errors
+//         ];
+//         echo json_encode($response);
+//         exit;
+//     }
+
+//     $statement->execute([
+//         ':id' => $pdo->lastInsertId()
+//     ]);
+
+//     $reply = $statement->fetch(PDO::FETCH_ASSOC);
+
+//     echo json_encode($response);
+//     exit;
+// }

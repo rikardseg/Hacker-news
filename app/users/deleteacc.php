@@ -58,17 +58,6 @@ if (isset($_POST['delete-account'])) {
 
     $statement->bindParam(':user', $user, PDO::PARAM_STR);
     $statement->execute();
-
-
-
-
-
-
-
-
-
-    // COMMENTS
-
 }
 
 
