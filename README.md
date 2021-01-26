@@ -40,7 +40,7 @@ Erik White
 
 Extra features added by: [Erik White](https://github.com/nausea87)
 
-Link to pull request: ''
+Link to pull request: 'https://github.com/rikardseg/Hacker-news/commit/841275f16a3ba17cfad039b69acc57506a9d758d'
 
 - As a user I'm able to delete my account along with all posts, upvotes, comments, and (bonus) replies.
 
