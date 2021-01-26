@@ -59,8 +59,26 @@ endforeach;
             <label for="confirm_password">Confirm new password</label>
             <input type="password" name="confirm_password" id="confirm_password" />
             <button type="submit" class="btn">Save changes</button>
+
+
         </form>
-    </div>
+
+        <form class="delete-account" action="app/users/deleteacc.php" method="post">
+            <button type="delete-account" class="delete-account" name="delete-account">Delete</button>
+        </form>
+
+
+        <!-- <form class="user-settings" action="app/users/deleteacc.php" method="post">
+            <label class="delete-account-label text-info hidden" for="delete-button">
+                Please comfirm that you want to delete your account. <br>
+                Your posts, comments and upvotes will be deleted as well.
+            </label>
+            <br>
+            <button type="submit" class="btn btn-danger delete-account-real hidden" name="delete-button">Delete Account</button>
+        </form>
+        <button type="button" class="btn btn-danger delete-account">Delete Account</button>
+        <button type="button" class="btn btn-success cancel-button hidden">Cancel</button>
+        <div class="pb-5"></div> -->
 
 
 </body>
