@@ -59,8 +59,16 @@ endforeach;
             <label for="confirm_password">Confirm new password</label>
             <input type="password" name="confirm_password" id="confirm_password" />
             <button type="submit" class="btn">Save changes</button>
+
+
         </form>
-    </div>
+
+        <form class="delete-account" action="app/users/deleteacc.php" method="post">
+            <button type="delete-account" class="delete-account" name="delete-account">Delete</button>
+        </form>
+
+
+
 
 
 </body>

@@ -33,3 +33,15 @@ Load the application via localhost in your command line.
 # Testers
 
 Simon Lindstedt, Jonathan Larsson
+
+# HackerNews +
+
+Erik White
+
+Extra features added by: [Erik White](https://github.com/nausea87)
+
+Link to pull request: ''
+
+- As a user I'm able to delete my account along with all posts, upvotes, comments, and (bonus) replies.
+
+- As a user I'm able to post replies.

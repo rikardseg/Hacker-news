@@ -25,6 +25,13 @@ $statement->execute();
 
 $comments = $statement->fetchAll(PDO::FETCH_ASSOC);
 
+// Replies
+$sql = "SELECT * FROM replies WHERE posts_id = :posts_id";
+$statement = $dbHandler->prepare($sql);
+$statement->bindParam(":posts_id", $id, PDO::PARAM_INT);
+$statement->execute();
+
+$replies = $statement->fetchAll(PDO::FETCH_ASSOC)
 ?>
 
 <!DOCTYPE html>
@@ -68,7 +75,33 @@ $comments = $statement->fetchAll(PDO::FETCH_ASSOC);
                 <p><?= $comment['description']; ?></p>
             </div>
         <?php endforeach; ?>
-    </div>
+
+
+        <!--Replies...Show replies --->
+        <div class="replycontainer">
+            <form action="/app/comments/reply.php" method="post">
+                <input hidden type="integer" value="<?= $post['id'] ?>" id="postid" name="postid">
+                <textarea id="description" name="description" placeholder="Reply..." style="height:100px"></textarea>
+                <button type="reply" name="reply" class="reply">Reply</button>
+            </form>
+        </div>
+
+        <div class="replies">
+            <?php foreach ($replies as $reply) : ?>
+                <div>
+                    <em><?= $reply['user']; ?></em>
+                    <?php if (isset($_SESSION['user']) && $_SESSION['user'] === $reply['user']) : ?>
+                    <?php endif; ?>
+                    <p><?= $reply['description']; ?></p>
+                </div>
+            <?php endforeach; ?>
+        </div>
+
+
+
+
+
+
 </body>
 
 </html>
