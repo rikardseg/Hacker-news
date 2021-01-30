@@ -73,29 +73,34 @@ $replies = $statement->fetchAll(PDO::FETCH_ASSOC)
                     <p class="editcomment"><a href="comment.php?id=<?= $comment['id']; ?>">Edit comment</a></p>
                 <?php endif; ?>
                 <p><?= $comment['description']; ?></p>
+
+                <!--Replies posting-->
+                <div class="replycontainer">
+                    <form action="/app/comments/reply.php" method="post">
+                        <input hidden type="integer" value="<?= $post['id'] ?>" id="postid" name="postid">
+                        <textarea id="description" name="description" placeholder="Reply..." style="height:50px"></textarea>
+                        <button type="reply" name="reply" class="reply">Reply to comment</button>
+                    </form>
+                </div>
+                <!--Replies show-->
+                <div class="replies">
+                    <?php foreach ($replies as $reply) : ?>
+                        <div>
+                            <em><?= $reply['user']; ?></em>
+                            <?php if (isset($_SESSION['user']) && $_SESSION['user'] === $reply['user']) : ?>
+                            <?php endif; ?>
+                            <p><?= $reply['description']; ?></p>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+                <!--Replies stuff end-->
+
+
             </div>
         <?php endforeach; ?>
 
 
-        <!--Replies...Show replies --->
-        <div class="replycontainer">
-            <form action="/app/comments/reply.php" method="post">
-                <input hidden type="integer" value="<?= $post['id'] ?>" id="postid" name="postid">
-                <textarea id="description" name="description" placeholder="Reply..." style="height:100px"></textarea>
-                <button type="reply" name="reply" class="reply">Reply</button>
-            </form>
-        </div>
 
-        <div class="replies">
-            <?php foreach ($replies as $reply) : ?>
-                <div>
-                    <em><?= $reply['user']; ?></em>
-                    <?php if (isset($_SESSION['user']) && $_SESSION['user'] === $reply['user']) : ?>
-                    <?php endif; ?>
-                    <p><?= $reply['description']; ?></p>
-                </div>
-            <?php endforeach; ?>
-        </div>
 
 
 

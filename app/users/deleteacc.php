@@ -6,7 +6,9 @@ require __DIR__ . '/../autoload.php';
 
 if (isset($_POST['delete-account'])) {
 
-    // USER (WORKING)
+    //Insert confirm to not just accidently click
+
+    // USER
     $user = $_SESSION['user'];
     $statement = $dbHandler->prepare('DELETE FROM users WHERE user=:user');
 
@@ -17,7 +19,7 @@ if (isset($_POST['delete-account'])) {
     $statement->bindParam(':user', $user, PDO::PARAM_STR);
     $statement->execute();
 
-    // USER_VOTE (WORKING)
+    // USER_VOTE
     $statement = $dbHandler->prepare('DELETE FROM user_vote WHERE user=:user');
 
     if (!$statement) {
@@ -27,9 +29,7 @@ if (isset($_POST['delete-account'])) {
     $statement->execute();
 
 
-    // POSTS (Seems to work?)
-    // Currently 'removes' ze comments/replies from ze site, but those are still in
-    // ze database mmkay?.
+    // POSTS
     $statement = $dbHandler->prepare('DELETE FROM posts WHERE user=:user');
 
     if (!$statement) {
@@ -62,4 +62,5 @@ if (isset($_POST['delete-account'])) {
 
 
 //Redirect
+session_destroy();
 header("Location: /../../index.php?id=");
