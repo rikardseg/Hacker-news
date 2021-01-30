@@ -2,26 +2,13 @@
 
 declare(strict_types=1);
 
-// Things that still is not working properly:
-// 1. You can reply before comments even exists.
-// 2. You can only reply ones.
-// 3. Strict types error.
-
-
-
-
-
 require __DIR__ . '/../autoload.php';
 
 if (isset($_POST['postid'], $_POST['description'])) {
     $postId = trim(filter_var($_POST['postid'], FILTER_SANITIZE_NUMBER_INT));
     $description = trim(filter_var($_POST['description'], FILTER_SANITIZE_SPECIAL_CHARS));
-    // ADD ID? (Why tho?)
-    $id = trim(filter_var($_POST['id'], FILTER_SANITIZE_NUMBER_INT));
 
     $user = $_SESSION['user'];
-    $id = $_SESSION['id'];
-
 
     $sql = "INSERT INTO replies (posts_id, id, user, description) VALUES (:posts_id, :id, :user, :description)";
     $statement = $dbHandler->prepare($sql);
